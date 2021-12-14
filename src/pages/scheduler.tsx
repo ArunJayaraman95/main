@@ -45,7 +45,7 @@ const Scheduler = (props: any) => {
     // Return component
     return (
     <div>
-        <button type = "button" onClick = {updateCal}>Update</button>
+        <button type = "button" id = "updateCal" onClick = {updateCal}><i className="fas fa-sync"></i></button>
         <div className="scheduler-component">
             <ScheduleComponent
                 timeScale={{ enable: true, interval: 60, slotCount: 2 }}

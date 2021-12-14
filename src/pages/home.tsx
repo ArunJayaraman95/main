@@ -3,7 +3,10 @@ import IPage from "../interfaces/page";
 
 const HomePage: React.FunctionComponent<IPage> = props => {
     return (
-        <p>HOME PAGE</p>
+        <div>
+            <p>HOME PAGE</p>
+            <a href = "/scheduler">Schedule</a>
+        </div>
     )
 }
 

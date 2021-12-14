@@ -2,16 +2,27 @@
     background-color: tomato;
     width: 30vw;
     padding: 10px;
-    height: 80vh;
+    height: 100%;
 }
 
 .schedulerPage {
     display: flex;
     flex-direction: row;
+    height: 90vh;
 }
 
-.cFormInputs {
-    margin-top: 0.5em;
+button.cFormInputs {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50px;
 }
 
 .course {

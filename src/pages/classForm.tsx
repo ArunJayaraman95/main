@@ -135,7 +135,7 @@ function ClassForm() {
                             id = "cName" 
                             name = "cName" 
                             value = {section} 
-                            onChange = {handleChange} 
+                            onChange = {handleChange}
                             required/>
                         <br/>
 
@@ -161,13 +161,17 @@ function ClassForm() {
                             required/>
                         <br/>
                         <div className="weekDays-selector">
+
+                        <label><input type="checkbox" name="checkbox" value="value"/>Text</label>
+
                             M <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Mon"/>
                             T <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Tue"/>
                             W <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Wed"/>
                             T <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Thu"/>
                             F <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Fri"/>
                         </div>
-                        <button type = "button" className = "cFormInputs" onClick={addSection}>Add Section</button>
+        
+                        <button type = "button" className = "cFormInputs" onClick={addSection}><i className="fas fa-plus"></i>Add Section</button>
                     </form>
                     <div className="displayClasses">
                         {courseList.map((course: ICourse, key: number) => {
