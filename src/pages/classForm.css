@@ -1,0 +1,59 @@
+.classForm {
+    background-color: tomato;
+    width: 30vw;
+    padding: 10px;
+    height: 80vh;
+}
+
+.schedulerPage {
+    display: flex;
+    flex-direction: row;
+}
+
+.cFormInputs {
+    margin-top: 0.5em;
+}
+
+.course {
+    background-color: gold;
+    border-radius: 100px;
+    margin: 0.2em;
+    width: 95%;
+    height: 1.3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.course .content {
+    flex: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.courseDisplay {
+    flex: 3;
+    margin-left: 10px;
+}
+
+.timings {
+    flex: 2;
+}
+
+.daysOfWeekDisplay {
+    flex: 2;
+    text-align: center;
+    font-size: 0.6em;
+}
+
+.course button {
+    flex: 20%;
+    height: 100%;
+    border: none;
+    background-color: purple;
+    color: white;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+}
