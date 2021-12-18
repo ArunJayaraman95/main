@@ -10,7 +10,7 @@ const routes: IRoute[] = [
         exact: true
     },
     {
-        path: '/schedule',
+        path: '/arunjayaraman95.github.io/schedule',
         name: 'Scheduler',
         component: ClassForm,
         exact: true
