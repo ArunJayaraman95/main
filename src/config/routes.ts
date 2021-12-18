@@ -10,7 +10,7 @@ const routes: IRoute[] = [
         exact: true
     },
     {
-        path: '/scheduler',
+        path: '/schedule',
         name: 'Scheduler',
         component: ClassForm,
         exact: true

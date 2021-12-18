@@ -5,7 +5,7 @@ const HomePage: React.FunctionComponent<IPage> = props => {
     return (
         <div>
             <p>HOME PAGE Published V2</p>
-            <a href = "/scheduler">Schedule</a>
+            <a href = "/schedule">Schedule</a>
         </div>
     )
 }
