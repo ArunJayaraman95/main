@@ -40,30 +40,11 @@ function ClassForm() {
             setEnd(t);
             setEHour(Number(t.substring(0,2)));
             setEMin(Number(t.substring(3,5)));
-        } else {
-            let tempDay: number = 5;
-            switch (t) {
-                case "Mon":
-                    tempDay = 0;
-                    break;
-                case "Tue":
-                    tempDay = 1;
-                    break;
-                case "Wed":
-                    tempDay = 2;
-                    break;
-                case "Thu":
-                    tempDay = 3;
-                    break;
-                case "Fri":
-                    tempDay = 4;
-                    break;
-            }
-            days[tempDay] = days[tempDay] === true ? false : true;
         }
 
         console.log(days);
     };
+
 
     // TODO: Add validation for times
     // Actually pushes a new class into CourseList
@@ -161,16 +142,16 @@ function ClassForm() {
                             required/>
                         <br/>
                         <div className="weekDays-selector">
+                            <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Mon"/><label>M</label>
+                            <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Tue"/><label>T</label>
+                            <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Wed"/><label>W</label>
+                            <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Thu"/><label>T</label>
+                            <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Fri"/><label>F</label>
 
-                        <label><input type="checkbox" name="checkbox" value="value"/>Text</label>
 
-                            M <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Mon"/>
-                            T <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Tue"/>
-                            W <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Wed"/>
-                            T <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Thu"/>
-                            F <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Fri"/>
                         </div>
-        
+
+
                         <button type = "button" className = "cFormInputs" onClick={addSection}><i className="fas fa-plus"></i>Add Section</button>
                     </form>
                     <div className="displayClasses">

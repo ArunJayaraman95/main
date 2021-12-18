@@ -68,3 +68,7 @@ button.cFormInputs {
     border-top-right-radius: 100px;
     border-bottom-right-radius: 100px;
 }
+
+.weekDays-selector input {
+    /* display: none; */
+}
