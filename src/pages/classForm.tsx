@@ -45,8 +45,17 @@ function ClassForm() {
         console.log(days);
     };
 
+    const handleCheckboxes = (position: number): void => {
+        const updatedCheckedState = days.map((item, index) =>
+            index === position ? !item : item
+        );
+        setDays(updatedCheckedState);
+        console.log(updatedCheckedState); //logging 'days' lags by 1
+    }
 
     // TODO: Add validation for times
+    // ! Fix checkboxes
+
     // Actually pushes a new class into CourseList
     const addSection = (): void => {
 
@@ -103,6 +112,7 @@ function ClassForm() {
 
     // TODO: Add day options
     return (
+    <div>
         <div className = "schedulerPage">
                 <Scheduler courseListings = {courseList}></Scheduler>
                 <div className="classForm">
@@ -112,7 +122,7 @@ function ClassForm() {
                         <label>Class Name:</label>
                         <input 
                             className = "cFormInputs" 
-                            type="text" 
+                            // type="text" 
                             id = "cName" 
                             name = "cName" 
                             value = {section} 
@@ -142,11 +152,36 @@ function ClassForm() {
                             required/>
                         <br/>
                         <div className="weekDays-selector">
-                            <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Mon"/><label>M</label>
-                            <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Tue"/><label>T</label>
-                            <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Wed"/><label>W</label>
-                            <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Thu"/><label>T</label>
-                            <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Fri"/><label>F</label>
+                            <input 
+                                onChange = {() => handleCheckboxes(0)} 
+                                type = "checkbox" 
+                                name = "daysOfWeek" 
+                                value = "Mon"
+                            /><label>M</label>
+                            <input 
+                                onChange = {() => handleCheckboxes(1)} 
+                                type = "checkbox" 
+                                name = "daysOfWeek" 
+                                value = "Tue"
+                            /><label>T</label>
+                            <input 
+                                onChange = {() => handleCheckboxes(2)} 
+                                type = "checkbox" 
+                                name = "daysOfWeek" 
+                                value = "Wed"
+                            /><label>W</label>
+                            <input 
+                                onChange = {() => handleCheckboxes(3)} 
+                                type = "checkbox" 
+                                name = "daysOfWeek" 
+                                value = "Thu"
+                            /><label>T</label>
+                            <input 
+                                onChange = {() => handleCheckboxes(4)} 
+                                type = "checkbox" 
+                                name = "daysOfWeek" 
+                                value = "Fri"
+                            /><label>F</label>
 
 
                         </div>
@@ -161,6 +196,10 @@ function ClassForm() {
                     </div>
                 </div>
         </div>
+        <div className="debugger">
+            <h1>Helldo</h1>
+        </div>
+    </div>
     )
 }
 

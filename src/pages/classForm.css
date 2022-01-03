@@ -69,6 +69,7 @@ button.cFormInputs {
     border-bottom-right-radius: 100px;
 }
 
-.weekDays-selector input {
-    /* display: none; */
+.debugger {
+    margin-top: 20px;
+    padding: 20px;
 }

@@ -44,8 +44,12 @@ const Scheduler = (props: any) => {
 
     // Return component
     return (
-    <div>
+    <div>                    
+        <button className = "leftButton" type = "button">Left</button>
         <button type = "button" id = "updateCal" onClick = {updateCal}><i className="fas fa-sync"></i></button>
+        <button className = "rightButton" type = "button">Right</button>
+
+        
         <div className="scheduler-component">
             <ScheduleComponent
                 timeScale={{ enable: true, interval: 60, slotCount: 2 }}
@@ -54,6 +58,7 @@ const Scheduler = (props: any) => {
                 height = '90vh'
                 width = '60vw'
                 currentView = "Week"
+                selectedDate = {new Date(2021, 11, 12)}
                 eventSettings = {localData}>
 
                 <ViewsDirective>
