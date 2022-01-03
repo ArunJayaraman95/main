@@ -20,91 +20,23 @@ const Scheduler = (props: any) => {
     // }
 
     const [scheduleIndex, setScheduleIndex] = useState<number>(0);
-    const xxx = [
-        {
-            Subject:"Stats",
-            Id:0,
-            StartTime: new Date(2021, 11, 12, 10, 30),
-            EndTime: new Date(2021, 11, 12, 11, 20),
-            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
-            RecurrenceException:"20211212,20211218,20211213,20211215,20211217"
-            },
-            {
-            Subject:"Stats",
-            Id:1,
-            StartTime: new Date(2021, 11, 12, 10, 50),
-            EndTime: new Date(2021, 11, 12, 11, 20),
-            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
-            RecurrenceException:"20211212,20211218,20211213,20211215,20211217"
-            },
-            {
-            Subject:"Stats",
-            Id:2,
-            StartTime: new Date(2021, 11, 12, 9, 30),
-            EndTime: new Date(2021, 11, 12, 10, 20),
-            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
-            RecurrenceException:"20211212,20211218,20211213,20211215,20211217"
-            },
-            {
-            Subject:"Algorithms",
-            Id:3,
-            StartTime: new Date(2021, 11, 12, 17, 30),
-            EndTime: new Date(2021, 11, 12, 18, 45),
-            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
-            RecurrenceException:"20211212,20211218,20211214,20211216"  
-            },
-            {
-            Subject:"Game Design",
-            Id:4,
-            StartTime: new Date(2021, 11, 12, 17, 30),
-            EndTime: new Date(2021, 11, 12, 18, 45),
-            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
-            RecurrenceException:"20211212,20211218,20211213,20211215"  
-            },
-            {
-            Subject:"Numerical",
-            Id:5,
-            StartTime: new Date(2021, 11, 12, 16, 0),
-            EndTime: new Date(2021, 11, 12, 17, 15),
-            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
-            RecurrenceException:"20211212,20211218,20211214,20211216"  
-            },
-            {
-            Subject:"Game Lab",
-            Id:6,
-            StartTime: new Date(2021, 11, 12, 19, 0),
-            EndTime: new Date(2021, 11, 12, 20, 40),
-            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
-            RecurrenceException:"20211212,20211218,20211213,20211215"  
-            },
-            {
-            Subject:"AI",
-            Id:7,
-            StartTime: new Date(2021, 11, 12, 16, 0),
-            EndTime: new Date(2021, 11, 12, 17, 15),
-            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
-            RecurrenceException:"20211212,20211218,20211213,20211215"  
-            },
-            {
-            Subject:"Automata",
-            Id:8,
-            StartTime: new Date(2021, 11, 12, 16, 30),
-            EndTime: new Date(2021, 11, 12, 17, 20),
-            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
-            RecurrenceException:"20211212,20211218,20211213,20211215"  
-            },
-            {
-            Subject:"Fake",
-            Id:9,
-            StartTime: new Date(2021, 11, 12, 17, 15),
-            EndTime: new Date(2021, 11, 12, 17, 45),
-            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
-            RecurrenceException:"20211212,20211218,20211214,20211216"  
-            },
-    ];
-
     // State for calendar event array
-    const [finalList, setFinalList] = useState<ISchedArray[][]>([]);
+    const [finalList, setFinalList] = useState<ISchedArray[][]>([[        {
+        Subject:"Stats",
+        Id:"2",
+        StartTime: new Date(2021, 11, 12, 9, 30),
+        EndTime: new Date(2021, 11, 12, 10, 20),
+        RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
+        RecurrenceException:"20211212,20211218,20211214,20211216"    
+        },
+        {
+        Subject:"Algorithms",
+        Id:"3",
+        StartTime: new Date(2021, 11, 12, 17, 30),
+        EndTime: new Date(2021, 11, 12, 18, 45),
+        RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
+        RecurrenceException:"20211212,20211218,20211213,20211215,20211217"
+        },]]);
     const [fList, setFList] = useState<ISchedArray[]>(
         [        
         {

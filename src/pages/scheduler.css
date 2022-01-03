@@ -11,3 +11,7 @@
     cursor: pointer;
     border-radius: 50px;
 }
+
+.e-schedule .e-vertical-view .e-work-cells {
+    background-color: #EEF;
+}
