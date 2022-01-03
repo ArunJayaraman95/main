@@ -4,5 +4,5 @@ export interface ISchedArray {
     StartTime: Date,
     EndTime: Date,
     RecurrenceRule?: string,
-    RecurrenceException?: string,
+    RecurrenceException: string,
 }

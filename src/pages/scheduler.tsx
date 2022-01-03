@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Inject, ScheduleComponent, Week, EventSettingsModel, ViewsDirective, ViewDirective} from "@syncfusion/ej2-react-schedule";
 import './scheduler.css';
 import { ISchedArray } from "../interfaces/schedArray";
+import { ICourse } from "../interfaces/course";
 
 const Scheduler = (props: any) => {
     
@@ -20,74 +21,194 @@ const Scheduler = (props: any) => {
     const [scheduleIndex, setScheduleIndex] = useState<number>(1);
     const xxx = [
         {
-            Subject: "Algorithms",
-            Id: '1',
-            StartTime: new Date(2021, 11, 12, 8, 0),
-            EndTime: new Date(2021, 11, 12, 12, 0),
-            RecurrenceRule: 'FREQ=DAILY;INTERVAL=1;COUNT=7',
-            RecurrenceException: '20211212,20211218,20211214,20211216,20211217'
-        },
-        {
-            Subject: "Stats",
-            Id: '2',
-            StartTime: new Date(2021, 11, 12, 8, 0),
-            EndTime: new Date(2021, 11, 12, 12, 0),
-            RecurrenceRule: 'FREQ=DAILY;INTERVAL=1;COUNT=7',
-            RecurrenceException: '20211212,20211218,20211214,20211216,20211217'
-        },
-        {
-            Subject: "Algorithms",
-            Id: '3',
-            StartTime: new Date(2021, 11, 12, 8, 0),
-            EndTime: new Date(2021, 11, 12, 12, 0),
-            RecurrenceRule: 'FREQ=DAILY;INTERVAL=1;COUNT=7',
-            RecurrenceException: '20211212,20211218,20211214,20211216,20211217'
-        },
-        {
-            Subject: "Algorithms",
-            Id: '4',
-            StartTime: new Date(2021, 11, 12, 8, 0),
-            EndTime: new Date(2021, 11, 12, 12, 0),
-            RecurrenceRule: 'FREQ=DAILY;INTERVAL=1;COUNT=7',
-            RecurrenceException: '20211212,20211218,20211214,20211216,20211217'
-        },
-        {
-            Subject: "Algorithms",
-            Id: '5',
-            StartTime: new Date(2021, 11, 12, 8, 0),
-            EndTime: new Date(2021, 11, 12, 12, 0),
-            RecurrenceRule: 'FREQ=DAILY;INTERVAL=1;COUNT=7',
-            RecurrenceException: '20211212,20211218,20211214,20211216,20211217'
-        },
+            Subject:"Stats",
+            Id:0,
+            StartTime: new Date(2021, 11, 12, 10, 30),
+            EndTime: new Date(2021, 11, 12, 11, 20),
+            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
+            RecurrenceException:"20211212,20211218,20211213,20211215,20211217"
+            },
+            {
+            Subject:"Stats",
+            Id:1,
+            StartTime: new Date(2021, 11, 12, 10, 50),
+            EndTime: new Date(2021, 11, 12, 11, 20),
+            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
+            RecurrenceException:"20211212,20211218,20211213,20211215,20211217"
+            },
+            {
+            Subject:"Stats",
+            Id:2,
+            StartTime: new Date(2021, 11, 12, 9, 30),
+            EndTime: new Date(2021, 11, 12, 10, 20),
+            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
+            RecurrenceException:"20211212,20211218,20211213,20211215,20211217"
+            },
+            {
+            Subject:"Algorithms",
+            Id:3,
+            StartTime: new Date(2021, 11, 12, 17, 30),
+            EndTime: new Date(2021, 11, 12, 18, 45),
+            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
+            RecurrenceException:"20211212,20211218,20211214,20211216"  
+            },
+            {
+            Subject:"Game Design",
+            Id:4,
+            StartTime: new Date(2021, 11, 12, 17, 30),
+            EndTime: new Date(2021, 11, 12, 18, 45),
+            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
+            RecurrenceException:"20211212,20211218,20211213,20211215"  
+            },
+            {
+            Subject:"Numerical",
+            Id:5,
+            StartTime: new Date(2021, 11, 12, 16, 0),
+            EndTime: new Date(2021, 11, 12, 17, 15),
+            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
+            RecurrenceException:"20211212,20211218,20211214,20211216"  
+            },
+            {
+            Subject:"Game Lab",
+            Id:6,
+            StartTime: new Date(2021, 11, 12, 19, 0),
+            EndTime: new Date(2021, 11, 12, 20, 40),
+            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
+            RecurrenceException:"20211212,20211218,20211213,20211215"  
+            },
+            {
+            Subject:"AI",
+            Id:7,
+            StartTime: new Date(2021, 11, 12, 16, 0),
+            EndTime: new Date(2021, 11, 12, 17, 15),
+            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
+            RecurrenceException:"20211212,20211218,20211213,20211215"  
+            },
+            {
+            Subject:"Automata",
+            Id:8,
+            StartTime: new Date(2021, 11, 12, 16, 30),
+            EndTime: new Date(2021, 11, 12, 17, 20),
+            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
+            RecurrenceException:"20211212,20211218,20211213,20211215"  
+            },
+            {
+            Subject:"Fake",
+            Id:9,
+            StartTime: new Date(2021, 11, 12, 17, 15),
+            EndTime: new Date(2021, 11, 12, 17, 45),
+            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
+            RecurrenceException:"20211212,20211218,20211214,20211216"  
+            },
     ];
 
     // State for calendar event array
-    const [fList, setFList] = useState<ISchedArray[][]>([[
-        {
-        Subject: "Algorithms",
-        Id: '1',
-        StartTime: new Date(2021, 11, 12, 8, 0),
-        EndTime: new Date(2021, 11, 12, 12, 0),
-        RecurrenceRule: 'FREQ=DAILY;INTERVAL=1;COUNT=7',
-        RecurrenceException: '20211212,20211218,20211214,20211216,20211217'
-        },
-        {
-        Subject: "Stats",
-        Id: '2',
-        StartTime: new Date(2021, 11, 12, 13, 0),
-        EndTime: new Date(2021, 11, 12, 15, 0),
-        RecurrenceRule: 'FREQ=DAILY;INTERVAL=1;COUNT=7',
-        RecurrenceException: '20211212,20211218,20211214,20211216,20211217'
-        },],
-        [
-        {
-        Subject: "Stats",
-        Id: '3',
-        StartTime: new Date(2021, 11, 12, 13, 0),
-        EndTime: new Date(2021, 11, 12, 15, 0),
-        RecurrenceRule: 'FREQ=DAILY;INTERVAL=1;COUNT=7',
-        RecurrenceException: '20211212,20211218,20211214,20211216,20211217'
-        },]
+    const [fList, setFList] = useState<ISchedArray[][]>([
+        // {
+        // Subject: "Algorithms",
+        // Id: '1',
+        // StartTime: new Date(2021, 11, 12, 8, 0),
+        // EndTime: new Date(2021, 11, 12, 12, 0),
+        // RecurrenceRule: 'FREQ=DAILY;INTERVAL=1;COUNT=7',
+        // RecurrenceException: '20211212,20211218,20211214,20211216,20211217'
+        // },
+        // {
+        // Subject: "Stats",
+        // Id: '2',
+        // StartTime: new Date(2021, 11, 12, 13, 0),
+        // EndTime: new Date(2021, 11, 12, 15, 0),
+        // RecurrenceRule: 'FREQ=DAILY;INTERVAL=1;COUNT=7',
+        // RecurrenceException: '20211212,20211218,20211214,20211216,20211217'
+        // },],
+        // [
+        // {
+        // Subject: "Stats",
+        // Id: '3',
+        // StartTime: new Date(2021, 11, 12, 13, 0),
+        // EndTime: new Date(2021, 11, 12, 15, 0),
+        // RecurrenceRule: 'FREQ=DAILY;INTERVAL=1;COUNT=7',
+        // RecurrenceException: '20211212,20211218,20211214,20211216,20211217'
+        // },]
+        [        {
+            Subject:"Stats",
+            Id:'0',
+            StartTime: new Date(2021, 11, 12, 10, 30),
+            EndTime: new Date(2021, 11, 12, 11, 20),
+            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
+            RecurrenceException:"20211212,20211218,20211213,20211215,20211217"
+            },
+            {
+            Subject:"Stats",
+            Id:'1',
+            StartTime: new Date(2021, 11, 12, 10, 50),
+            EndTime: new Date(2021, 11, 12, 11, 20),
+            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
+            RecurrenceException:"20211212,20211218,20211213,20211215,20211217"
+            },
+            {
+            Subject:"Stats",
+            Id:'2',
+            StartTime: new Date(2021, 11, 12, 9, 30),
+            EndTime: new Date(2021, 11, 12, 10, 20),
+            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
+            RecurrenceException:"20211212,20211218,20211213,20211215,20211217"
+            },
+            {
+            Subject:"Algorithms",
+            Id:'3',
+            StartTime: new Date(2021, 11, 12, 17, 30),
+            EndTime: new Date(2021, 11, 12, 18, 45),
+            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
+            RecurrenceException:"20211212,20211218,20211214,20211216"  
+            },
+            {
+            Subject:"Game Design",
+            Id:'4',
+            StartTime: new Date(2021, 11, 12, 17, 30),
+            EndTime: new Date(2021, 11, 12, 18, 45),
+            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
+            RecurrenceException:"20211212,20211218,20211213,20211215"  
+            },
+            {
+            Subject:"Numerical",
+            Id:'5',
+            StartTime: new Date(2021, 11, 12, 16, 0),
+            EndTime: new Date(2021, 11, 12, 17, 15),
+            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
+            RecurrenceException:"20211212,20211218,20211214,20211216"  
+            },
+            {
+            Subject:"Game Lab",
+            Id:'6',
+            StartTime: new Date(2021, 11, 12, 19, 0),
+            EndTime: new Date(2021, 11, 12, 20, 40),
+            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
+            RecurrenceException:"20211212,20211218,20211213,20211215"  
+            },
+            {
+            Subject:"AI",
+            Id:'7',
+            StartTime: new Date(2021, 11, 12, 16, 0),
+            EndTime: new Date(2021, 11, 12, 17, 15),
+            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
+            RecurrenceException:"20211212,20211218,20211213,20211215"  
+            },
+            {
+            Subject:"Automata",
+            Id:'8',
+            StartTime: new Date(2021, 11, 12, 16, 30),
+            EndTime: new Date(2021, 11, 12, 17, 20),
+            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
+            RecurrenceException:"20211212,20211218,20211213,20211215"  
+            },
+            {
+            Subject:"Fake",
+            Id:'9',
+            StartTime: new Date(2021, 11, 12, 17, 15),
+            EndTime: new Date(2021, 11, 12, 17, 45),
+            RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
+            RecurrenceException:"20211212,20211218,20211214,20211216"  
+            },]
     ]);
 
     // TODO: Figure out how to get a constant week
@@ -123,14 +244,59 @@ const Scheduler = (props: any) => {
         //Use ParseInt for string to int
     }
 
+    const conflict = (a: ISchedArray, b: ISchedArray): boolean => {
+        if (a.Id === b.Id) {
+            return false;
+        }
+        if (a.Subject === b.Subject) {
+            return true;
+        }
+        
+        let conflictDays: boolean = false;
+
+        if (a.RecurrenceException.includes('20211213') && b.RecurrenceException.includes('20211213')) {
+            conflictDays = true;
+        } 
+        if (a.RecurrenceException.includes('20211214') && b.RecurrenceException.includes('20211214')) {
+            conflictDays = true;
+        } 
+        if (a.RecurrenceException.includes('20211215') && b.RecurrenceException.includes('20211215')) {
+            conflictDays = true;
+        } 
+        if (a.RecurrenceException.includes('20211216') && b.RecurrenceException.includes('20211216')) {
+            conflictDays = true;
+        } 
+        if (a.RecurrenceException.includes('20211217') && b.RecurrenceException.includes('20211217')) {
+            conflictDays = true;
+        }
+
+        let aTempStart: number = a.StartTime.getHours() * 100 + a.StartTime.getMinutes();
+        let aTempEnd: number = a.EndTime.getHours() * 100 + a.EndTime.getMinutes();
+        let bTempStart: number = b.StartTime.getHours() * 100 + b.StartTime.getMinutes();
+        let bTempEnd: number = b.EndTime.getHours() * 100 + b.EndTime.getMinutes();
+
+        let conflictOne: boolean = (aTempStart <= bTempStart && bTempStart <= aTempEnd);
+        let conflictTwo: boolean = (bTempStart <= aTempStart && aTempStart <= bTempEnd);
+        let timeConflict: boolean = conflictOne || conflictTwo;
+        console.log("Time" + timeConflict);
+        console.log("Day" + conflictDays);
+
+        return conflictDays && timeConflict;
+    }
+
     const nextSchedule = () : void => {
         // TODO change from 1 to dynamic variable
-        if (scheduleIndex < fList.length - 1) {
-            setScheduleIndex(scheduleIndex + 1);
-        }
-        console.log("Length" + fList.length);
-        console.log(dec2bin(2));
-        console.log(parseInt(dec2bin(2)));
+        // ! Change back...like uncommon
+        // if (scheduleIndex < fList.length - 1) {
+        //     setScheduleIndex(scheduleIndex + 1);
+        // }
+        // console.log("Length" + fList.length);
+        // console.log(dec2bin(2));
+        // console.log(parseInt(dec2bin(2)));
+
+        console.log(fList[0][4].StartTime.getHours());
+        console.log(fList[0][3].Subject + fList[0][9].Subject);
+        console.log(conflict(fList[0][3], fList[0][9]));
     }
 
 
