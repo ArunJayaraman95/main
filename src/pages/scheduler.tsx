@@ -104,7 +104,7 @@ const Scheduler = (props: any) => {
     ];
 
     // State for calendar event array
-   const [finalList, setFinalList] = useState<ISchedArray[][]>([]);
+    const [finalList, setFinalList] = useState<ISchedArray[][]>([]);
     const [fList, setFList] = useState<ISchedArray[]>(
         [        
             {
@@ -202,19 +202,34 @@ const Scheduler = (props: any) => {
         return container;
     })
 
+    let intermediateSchedules: ISchedArray[][] = [];
+    
+    const [ck, setck] = useState<number>(0);
+    let testerList: ISchedArray[][] = [];
     // Data for React Scheduler
-    let localData:EventSettingsModel = {dataSource: finalList[scheduleIndex]}
+    let localData:EventSettingsModel = {dataSource: finalList[scheduleIndex]};
 
     // Update Calendar Function
     const updateCal = () :void => {
         console.log(refinedCourses);
         setFList(refinedCourses);
     }
-
+    
     const prevSchedule = () : void => {
         if (scheduleIndex > 0) {
             setScheduleIndex(scheduleIndex - 1);
         }
+        console.log("NEW");
+        console.log(finalList);
+    }
+    
+    const nextSchedule = () : void => {
+        // TODO change from 1 to dynamic variable
+        // ! Change back...like uncommon
+        if (scheduleIndex < ck - 1) {
+            setScheduleIndex(scheduleIndex + 1);
+        }
+        console.log(finalList);
     }
 
     const dec2bin = (dec: number): string => {
@@ -225,14 +240,11 @@ const Scheduler = (props: any) => {
 
     // TODO Convert to matrix for performance
 
-    let intermediateSchedules: ISchedArray[][] = [];
-    const [ck, setck] = useState<number>(0);
-
     const permute = (): void => {
-        console.log(fList.length);
+        // console.log(fList.length);
         let fLength = fList.length;
-        setFinalList([]);
-        
+        // setFinalList([]);
+        testerList = [];
         // console.log("Flength" + fLength);
         // console.log("HEllo" + dec2bin(2**fLength));
         // console.log("Test" + "7".padStart(10, '0'));
@@ -261,9 +273,9 @@ const Scheduler = (props: any) => {
 
             if (poss) {
                 intermediateSchedules.push(tempCourses);
-                console.log(intermediateSchedules);
+                console.log(tempCourses);
             } else {
-                console.log("CONFLICTED SCHEDULE NUMBER " + i);
+                // console.log("CONFLICTED SCHEDULE NUMBER " + i);
             }
         }
 
@@ -276,14 +288,22 @@ const Scheduler = (props: any) => {
 
         for (let i = 0; i < intermediateSchedules.length; i++) {
             if (intermediateSchedules[i].length === tempMax) {
+                console.log("YUP")
+                console.log(intermediateSchedules[i]);
                 // setFinalList([...finalList, intermediateSchedules[i]])
-                finalList.push(intermediateSchedules[i]);
+                // setFinalList([...finalList, ...[intermediateSchedules[1]]]);
+                // var join = finalList.concat(intermediateSchedules[i]);
+                // setFinalList(join);
+                testerList.push(intermediateSchedules[i]);
+                console.log("UPDATED");
+                console.log(testerList);
             }
         }
 
         console.log("FINAL LIST");
-        console.log(finalList);
-        setck(finalList.length);
+        console.log(testerList);
+        setFinalList(testerList);
+        setck(testerList.length);
 
     }
 
@@ -327,20 +347,6 @@ const Scheduler = (props: any) => {
         return conflictDays && timeConflict;
     }
 
-    const nextSchedule = () : void => {
-        // TODO change from 1 to dynamic variable
-        // ! Change back...like uncommon
-        if (scheduleIndex < ck - 1) {
-            setScheduleIndex(scheduleIndex + 1);
-        }
-        // console.log("Length" + fList.length);
-        // console.log(dec2bin(2));
-        // console.log(parseInt(dec2bin(2)));
-
-        // console.log(fList[0][4].StartTime.getHours());
-        // console.log(fList[3].Subject + " " + fList[9].Subject);
-        // console.log(conflict(fList[3], fList[9]));
-    }
 
 
 
