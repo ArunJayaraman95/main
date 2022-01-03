@@ -285,6 +285,9 @@ const Scheduler = (props: any) => {
     }
 
 
+    function eventTemplate(props: {[key: string]: Object }): JSX.Element {
+        return (<div className = "week-template-wrap">{props.Subject}</div>)
+    }
 
     // Return component
     return (
@@ -313,7 +316,8 @@ const Scheduler = (props: any) => {
                         readonly = {true}
                         startHour = '07:00'
                         endHour = '23:00'
-                        showWeekNumber = {false}/>
+                        showWeekNumber = {false}
+                        eventTemplate = {eventTemplate.bind(this)}/>
                 </ViewsDirective>
                 <Inject services = {[Week]} />
 
