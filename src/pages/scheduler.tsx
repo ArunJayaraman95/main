@@ -19,7 +19,7 @@ const Scheduler = (props: any) => {
     //     RecurrenceException:"20211214,20211216"
     // }
 
-    const [scheduleIndex, setScheduleIndex] = useState<number>(1);
+    const [scheduleIndex, setScheduleIndex] = useState<number>(0);
     const xxx = [
         {
             Subject:"Stats",
@@ -104,33 +104,10 @@ const Scheduler = (props: any) => {
     ];
 
     // State for calendar event array
-    const [fList, setFList] = useState<ISchedArray[][]>([
-        // {
-        // Subject: "Algorithms",
-        // Id: '1',
-        // StartTime: new Date(2021, 11, 12, 8, 0),
-        // EndTime: new Date(2021, 11, 12, 12, 0),
-        // RecurrenceRule: 'FREQ=DAILY;INTERVAL=1;COUNT=7',
-        // RecurrenceException: '20211212,20211218,20211214,20211216,20211217'
-        // },
-        // {
-        // Subject: "Stats",
-        // Id: '2',
-        // StartTime: new Date(2021, 11, 12, 13, 0),
-        // EndTime: new Date(2021, 11, 12, 15, 0),
-        // RecurrenceRule: 'FREQ=DAILY;INTERVAL=1;COUNT=7',
-        // RecurrenceException: '20211212,20211218,20211214,20211216,20211217'
-        // },],
-        // [
-        // {
-        // Subject: "Stats",
-        // Id: '3',
-        // StartTime: new Date(2021, 11, 12, 13, 0),
-        // EndTime: new Date(2021, 11, 12, 15, 0),
-        // RecurrenceRule: 'FREQ=DAILY;INTERVAL=1;COUNT=7',
-        // RecurrenceException: '20211212,20211218,20211214,20211216,20211217'
-        // },]
-        [        {
+   const [finalList, setFinalList] = useState<ISchedArray[][]>([]);
+    const [fList, setFList] = useState<ISchedArray[]>(
+        [        
+            {
             Subject:"Stats",
             Id:'0',
             StartTime: new Date(2021, 11, 12, 10, 30),
@@ -210,7 +187,7 @@ const Scheduler = (props: any) => {
             RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
             RecurrenceException:"20211212,20211218,20211214,20211216"  
             },]
-    ]);
+    );
 
     // TODO: Figure out how to get a constant week
     // Morph props courses into manageable FList type courses
@@ -226,7 +203,7 @@ const Scheduler = (props: any) => {
     })
 
     // Data for React Scheduler
-    let localData:EventSettingsModel = {dataSource: fList[scheduleIndex]}
+    let localData:EventSettingsModel = {dataSource: finalList[scheduleIndex]}
 
     // Update Calendar Function
     const updateCal = () :void => {
@@ -235,27 +212,79 @@ const Scheduler = (props: any) => {
     }
 
     const prevSchedule = () : void => {
-        // if (scheduleIndex > 0) {
-        //     setScheduleIndex(scheduleIndex - 1);
-        // }
-        permute();
+        if (scheduleIndex > 0) {
+            setScheduleIndex(scheduleIndex - 1);
+        }
     }
 
     const dec2bin = (dec: number): string => {
         return (dec >>> 0).toString(2);
         //Use ParseInt for string to int
     }
-    
+
+
+    // TODO Convert to matrix for performance
+
+    let intermediateSchedules: ISchedArray[][] = [];
+    const [ck, setck] = useState<number>(0);
+
     const permute = (): void => {
-        console.log(fList[0].length);
-        let fLength = fList[0].length;
-        console.log("Flength" + fLength);
-        console.log("HEllo" + dec2bin(2**fLength));
-        console.log("Test" + "7".padStart(10, '0'));
+        console.log(fList.length);
+        let fLength = fList.length;
+        setFinalList([]);
+        
+        // console.log("Flength" + fLength);
+        // console.log("HEllo" + dec2bin(2**fLength));
+        // console.log("Test" + "7".padStart(10, '0'));
+        // * Change stopping condition to 2**fLength when done debugging
+        
+
         for (let i = 0; i < 2**fLength; i++) {
+            let tempCourses: ISchedArray[] = [];
             var t: string = dec2bin(i).toString().padStart(fLength, '0');
-            console.log(t.charAt(0));
+            for (let j = 0; j < fLength; j++) {
+                if (t.charAt(j) == '1') {
+                    tempCourses.push(fList[j]);
+                    // console.log(tempCourses);
+                }
+            }
+
+            let poss: boolean = true;
+
+            for (let k = 0; k < tempCourses.length; k++) {
+                for (let m = k; m < tempCourses.length; m++) {
+                    if (conflict(tempCourses[k], tempCourses[m])) {
+                        poss = false;
+                    }
+                }
+            }
+
+            if (poss) {
+                intermediateSchedules.push(tempCourses);
+                console.log(intermediateSchedules);
+            } else {
+                console.log("CONFLICTED SCHEDULE NUMBER " + i);
+            }
         }
+
+        let tempMax = 0;
+        for (let i = 0; i < intermediateSchedules.length; i++) {
+            if (intermediateSchedules[i].length > tempMax) {
+                tempMax = intermediateSchedules[i].length;
+            }
+        }
+
+        for (let i = 0; i < intermediateSchedules.length; i++) {
+            if (intermediateSchedules[i].length === tempMax) {
+                // setFinalList([...finalList, intermediateSchedules[i]])
+                finalList.push(intermediateSchedules[i]);
+            }
+        }
+
+        console.log("FINAL LIST");
+        console.log(finalList);
+        setck(finalList.length);
+
     }
 
     const conflict = (a: ISchedArray, b: ISchedArray): boolean => {
@@ -292,8 +321,8 @@ const Scheduler = (props: any) => {
         let conflictOne: boolean = (aTempStart <= bTempStart && bTempStart <= aTempEnd);
         let conflictTwo: boolean = (bTempStart <= aTempStart && aTempStart <= bTempEnd);
         let timeConflict: boolean = conflictOne || conflictTwo;
-        console.log("Time" + timeConflict);
-        console.log("Day" + conflictDays);
+        // console.log("Time" + timeConflict);
+        // console.log("Day" + conflictDays);
 
         return conflictDays && timeConflict;
     }
@@ -301,16 +330,16 @@ const Scheduler = (props: any) => {
     const nextSchedule = () : void => {
         // TODO change from 1 to dynamic variable
         // ! Change back...like uncommon
-        // if (scheduleIndex < fList.length - 1) {
-        //     setScheduleIndex(scheduleIndex + 1);
-        // }
+        if (scheduleIndex < ck - 1) {
+            setScheduleIndex(scheduleIndex + 1);
+        }
         // console.log("Length" + fList.length);
         // console.log(dec2bin(2));
         // console.log(parseInt(dec2bin(2)));
 
         // console.log(fList[0][4].StartTime.getHours());
-        console.log(fList[0][3].Subject + " " + fList[0][9].Subject);
-        console.log(conflict(fList[0][3], fList[0][9]));
+        // console.log(fList[3].Subject + " " + fList[9].Subject);
+        // console.log(conflict(fList[3], fList[9]));
     }
 
 
@@ -319,9 +348,9 @@ const Scheduler = (props: any) => {
     return (
     <div>                    
         <button className = "leftButton" type = "button" onClick = {prevSchedule}>Left</button>
-        <button type = "button" id = "updateCal" onClick = {updateCal}><i className="fas fa-sync"></i></button>
+        <button type = "button" id = "updateCal" onClick = {permute}><i className="fas fa-sync"></i></button>
         <button className = "rightButton" type = "button" onClick = {nextSchedule}>Right</button>
-        <h2>Schedule #{scheduleIndex + 1} of {fList.length}</h2>
+        <h2>Schedule #{scheduleIndex + 1} of {ck}</h2>
         
         <div className="scheduler-component">
             <ScheduleComponent
