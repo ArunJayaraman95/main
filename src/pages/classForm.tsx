@@ -87,7 +87,7 @@ function ClassForm() {
             eHour: eHour,
             eMin: eMin,
             key: counter, // * Note key in this case is just the count. It never decrements to maintain uniqueness
-            days: x    
+            days: x
         }
         
         // Increment counter and append new course
