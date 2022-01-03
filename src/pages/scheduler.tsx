@@ -3,6 +3,7 @@ import { Inject, ScheduleComponent, Week, EventSettingsModel, ViewsDirective, Vi
 import './scheduler.css';
 import { ISchedArray } from "../interfaces/schedArray";
 import { ICourse } from "../interfaces/course";
+import { strictEqual } from "assert";
 
 const Scheduler = (props: any) => {
     
@@ -234,14 +235,27 @@ const Scheduler = (props: any) => {
     }
 
     const prevSchedule = () : void => {
-        if (scheduleIndex > 0) {
-            setScheduleIndex(scheduleIndex - 1);
-        }
+        // if (scheduleIndex > 0) {
+        //     setScheduleIndex(scheduleIndex - 1);
+        // }
+        permute();
     }
 
     const dec2bin = (dec: number): string => {
         return (dec >>> 0).toString(2);
         //Use ParseInt for string to int
+    }
+    
+    const permute = (): void => {
+        console.log(fList[0].length);
+        let fLength = fList[0].length;
+        console.log("Flength" + fLength);
+        console.log("HEllo" + dec2bin(2**fLength));
+        console.log("Test" + "7".padStart(10, '0'));
+        for (let i = 0; i < 2**fLength; i++) {
+            var t: string = dec2bin(i).toString().padStart(fLength, '0');
+            console.log(t.charAt(0));
+        }
     }
 
     const conflict = (a: ISchedArray, b: ISchedArray): boolean => {
@@ -294,8 +308,8 @@ const Scheduler = (props: any) => {
         // console.log(dec2bin(2));
         // console.log(parseInt(dec2bin(2)));
 
-        console.log(fList[0][4].StartTime.getHours());
-        console.log(fList[0][3].Subject + fList[0][9].Subject);
+        // console.log(fList[0][4].StartTime.getHours());
+        console.log(fList[0][3].Subject + " " + fList[0][9].Subject);
         console.log(conflict(fList[0][3], fList[0][9]));
     }
 
@@ -328,7 +342,6 @@ const Scheduler = (props: any) => {
                         startHour = '07:00'
                         endHour = '23:00'
                         showWeekNumber = {false}/>
-
                 </ViewsDirective>
                 <Inject services = {[Week]} />
 
