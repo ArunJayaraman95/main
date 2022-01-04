@@ -1,14 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 .classForm {
-    background-color: tomato;
-    width: 30vw;
-    padding: 10px;
+    background-color: burlywood;
+    width: 100%;
     height: 100%;
 }
+
+.classFormContent {
+    padding: 2%;
+}
+
+.classFormTitle {
+    font-size: 2em;
+}
+
+.classFormContent input {
+    margin: 0.5em 0.5em;
+    font-size: 1.5em;
+}
+.classFormContent input[type=checkbox] {
+    padding: 10px;
+}
+
+.classFormContent label {
+    font-size: 1.5em;
+}
+
 
 .schedulerPage {
     display: flex;
     flex-direction: row;
-    height: 90vh;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 button.cFormInputs {

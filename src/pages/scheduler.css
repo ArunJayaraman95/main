@@ -15,3 +15,23 @@
 .e-schedule .e-vertical-view .e-work-cells {
     background-color: #EEF;
 }
+
+.schedule-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: red;
+    height: 10vh;
+}
+
+.schedule-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: red;
+}
+
+.schedule-nav button {
+    padding: 10px;
+    margin: 10px;
+}
