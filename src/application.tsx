@@ -7,7 +7,7 @@ const Application: React.FunctionComponent<{}> = props => {
 
     return (
         <div>
-            <BrowserRouter>
+            <BrowserRouter basename = "https://arunjayaraman95.github.io/main">
                 <Switch>
                     {routes.map((route, index) => {
                         return (
