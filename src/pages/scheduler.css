@@ -1,4 +1,4 @@
-#updateCal {
+#generate {
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
@@ -10,4 +10,75 @@
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 50px;
+    width: 50px;
+    height: 50px;
+}
+#generate:hover {
+    background-color: rgb(24, 146, 71);
+    transition: all 0.3s;
+}
+.e-schedule .e-vertical-view .e-work-cells {
+    background-color: #EEF;
+}
+
+.schedule-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 10vh;
+    background-color: lightblue;
+}
+
+.schedule-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.schedule-nav button {
+    padding: 10px;
+    margin: 10px;
+}
+
+#leftButton {
+    background-color: #668ba8; /* Green */
+    border: none;
+    color: white;
+    padding: 1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+}
+#leftButton:hover {
+    background-color: rgb(59, 88, 88);
+    transition: all 0.3s;
+}
+#rightButton {
+    background-color: #668ba8; /* Green */
+    border: none;
+    color: white;
+    padding: 1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+}
+#rightButton:hover {
+    background-color: rgb(59, 88, 88);
+    transition: all 0.3s;
+}
+#testButton {
+    width: 80px;
 }

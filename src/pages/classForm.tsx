@@ -45,8 +45,17 @@ function ClassForm() {
         console.log(days);
     };
 
+    const handleCheckboxes = (position: number): void => {
+        const updatedCheckedState = days.map((item, index) =>
+            index === position ? !item : item
+        );
+        setDays(updatedCheckedState);
+        console.log(updatedCheckedState); //logging 'days' lags by 1
+    }
 
     // TODO: Add validation for times
+    // ! Fix checkboxes
+
     // Actually pushes a new class into CourseList
     const addSection = (): void => {
 
@@ -78,7 +87,7 @@ function ClassForm() {
             eHour: eHour,
             eMin: eMin,
             key: counter, // * Note key in this case is just the count. It never decrements to maintain uniqueness
-            days: x    
+            days: x
         }
         
         // Increment counter and append new course
@@ -106,58 +115,85 @@ function ClassForm() {
         <div className = "schedulerPage">
                 <Scheduler courseListings = {courseList}></Scheduler>
                 <div className="classForm">
-                    <h1 className = "classFormTitle">Schedule</h1>
-                    <button className = "generateButton" type = "button">Generate</button>
-                    <form action="">
-                        <label>Class Name:</label>
-                        <input 
-                            className = "cFormInputs" 
-                            type="text" 
-                            id = "cName" 
-                            name = "cName" 
-                            value = {section} 
-                            onChange = {handleChange}
-                            required/>
-                        <br/>
-
-                        <label>Start Time:</label>
-                        <input 
-                            className = "cFormInputs" 
-                            type="time" 
-                            id = "sTime" 
-                            name = "sTime" 
-                            value = {start} 
-                            onChange = {handleChange} 
-                            required/>
-                        <br/>
-
-                        <label>End Time:</label>
-                        <input 
-                            className = "cFormInputs" 
-                            type="time" 
-                            id="eTime" 
-                            name="eTime" 
-                            value = {end} 
-                            onChange = {handleChange} 
-                            required/>
-                        <br/>
-                        <div className="weekDays-selector">
-                            <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Mon"/><label>M</label>
-                            <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Tue"/><label>T</label>
-                            <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Wed"/><label>W</label>
-                            <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Thu"/><label>T</label>
-                            <input onChange = {handleChange} type = "checkbox" name = "daysOfWeek" value = "Fri"/><label>F</label>
-
-
+                    <div className = "classFormContent">
+                        <h2 className = "classFormTitle">Add Sections</h2>
+                        <a href = "/">Home Page</a>
+                        <form action="">
+                            <label>Class Name:</label>
+                            <input 
+                                className = "cFormInputs" 
+                                // type="text" 
+                                id = "cName" 
+                                name = "cName" 
+                                value = {section} 
+                                onChange = {handleChange}
+                                required/>
+                            <br/>
+    
+                            <label>Start Time:</label>
+                            <input 
+                                className = "cFormInputs" 
+                                type="time" 
+                                id = "sTime" 
+                                name = "sTime" 
+                                value = {start} 
+                                onChange = {handleChange} 
+                                required/>
+                            <br/>
+    
+                            <label>End Time:</label>
+                            <input 
+                                className = "cFormInputs" 
+                                type="time" 
+                                id="eTime" 
+                                name="eTime" 
+                                value = {end} 
+                                onChange = {handleChange} 
+                                required/>
+                            <br/>
+                            <div className="weekDays-selector">
+                                <input 
+                                    onChange = {() => handleCheckboxes(0)} 
+                                    type = "checkbox" 
+                                    name = "daysOfWeek" 
+                                    value = "Mon"
+                                /><label>M</label>
+                                <input 
+                                    onChange = {() => handleCheckboxes(1)} 
+                                    type = "checkbox" 
+                                    name = "daysOfWeek" 
+                                    value = "Tue"
+                                /><label>T</label>
+                                <input 
+                                    onChange = {() => handleCheckboxes(2)} 
+                                    type = "checkbox" 
+                                    name = "daysOfWeek" 
+                                    value = "Wed"
+                                /><label>W</label>
+                                <input 
+                                    onChange = {() => handleCheckboxes(3)} 
+                                    type = "checkbox" 
+                                    name = "daysOfWeek" 
+                                    value = "Thu"
+                                /><label>T</label>
+                                <input 
+                                    onChange = {() => handleCheckboxes(4)} 
+                                    type = "checkbox" 
+                                    name = "daysOfWeek" 
+                                    value = "Fri"
+                                /><label>F</label>
+    
+    
+                            </div>
+    
+    
+                            <button type = "button" className = "cFormInputs" onClick={addSection}><i className="fas fa-plus"></i>Add Section</button>
+                        </form>
+                        <div className="displayClasses">
+                            {courseList.map((course: ICourse, key: number) => {
+                                return <ClassTask course = {course} key = {key} removeCourse = {removeCourse} />;
+                            })}
                         </div>
-
-
-                        <button type = "button" className = "cFormInputs" onClick={addSection}><i className="fas fa-plus"></i>Add Section</button>
-                    </form>
-                    <div className="displayClasses">
-                        {courseList.map((course: ICourse, key: number) => {
-                            return <ClassTask course = {course} key = {key} removeCourse = {removeCourse} />;
-                        })}
                     </div>
                 </div>
         </div>
