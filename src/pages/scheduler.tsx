@@ -10,18 +10,10 @@ const Scheduler = (props: any) => {
     // * Always include SunSat as 20211212 and 20211218
     // ! No spaces for recurrence strings!!!
     
-    // let initial: ISchedArray = {
-    //     Id: "1",
-    //     Subject: "HI",
-    //     StartTime: new Date(2021, 11, 13, 16, 45),
-    //     EndTime: new Date(2021, 11, 13, 18, 45),
-    //     RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=8",
-    //     RecurrenceException:"20211214,20211216"
-    // }
 
     const [scheduleIndex, setScheduleIndex] = useState<number>(0);
-    // State for calendar event array
-    const [finalList, setFinalList] = useState<ISchedArray[][]>([[        {
+    const [finalList, setFinalList] = useState<ISchedArray[][]>([[        
+        {
         Subject:"Stats",
         Id:"2",
         StartTime: new Date(2021, 11, 12, 9, 30),
@@ -120,6 +112,12 @@ const Scheduler = (props: any) => {
         RecurrenceException:"20211212,20211218,20211213,20211215,20211217"
         },]
     );
+    let intermediateSchedules: ISchedArray[][] = [];
+    
+    const [ck, setck] = useState<number>(0);
+    let preFinalList: ISchedArray[][] = [];
+    // Data for React Scheduler
+    let localData:EventSettingsModel = {dataSource: finalList[scheduleIndex]};
 
     // TODO: Figure out how to get a constant week
     // Morph props courses into manageable FList type courses
@@ -134,39 +132,24 @@ const Scheduler = (props: any) => {
         return container;
     })
 
-    let intermediateSchedules: ISchedArray[][] = [];
     
-    const [ck, setck] = useState<number>(0);
-    let testerList: ISchedArray[][] = [];
-    // Data for React Scheduler
-    let localData:EventSettingsModel = {dataSource: finalList[scheduleIndex]};
-
-    // Update Calendar Function
-    const updateCal = () :void => {
-        console.log(refinedCourses);
-        setFList(refinedCourses);
-    }
-    
+    // Navigates to previous schedule
     const prevSchedule = () : void => {
         if (scheduleIndex > 0) {
             setScheduleIndex(scheduleIndex - 1);
         }
-        console.log("NEW");
-        console.log(finalList);
     }
     
+    //Navigates to next schedule
     const nextSchedule = () : void => {
-        // TODO change from 1 to dynamic variable
-        // ! Change back...like uncommon
         if (scheduleIndex < ck - 1) {
             setScheduleIndex(scheduleIndex + 1);
         }
-        console.log(finalList);
     }
 
+    // Function to convert from decimal number to binary string
     const dec2bin = (dec: number): string => {
         return (dec >>> 0).toString(2);
-        //Use ParseInt for string to int
     }
 
 
@@ -176,7 +159,7 @@ const Scheduler = (props: any) => {
         // console.log(fList.length);
         let fLength = fList.length;
         // setFinalList([]);
-        testerList = [];
+        preFinalList = [];
         // console.log("Flength" + fLength);
         // console.log("HEllo" + dec2bin(2**fLength));
         // console.log("Test" + "7".padStart(10, '0'));
@@ -226,16 +209,16 @@ const Scheduler = (props: any) => {
                 // setFinalList([...finalList, ...[intermediateSchedules[1]]]);
                 // var join = finalList.concat(intermediateSchedules[i]);
                 // setFinalList(join);
-                testerList.push(intermediateSchedules[i]);
+                preFinalList.push(intermediateSchedules[i]);
                 console.log("UPDATED");
-                console.log(testerList);
+                console.log(preFinalList);
             }
         }
 
         console.log("FINAL LIST");
-        console.log(testerList);
-        setFinalList(testerList);
-        setck(testerList.length);
+        console.log(preFinalList);
+        setFinalList(preFinalList);
+        setck(preFinalList.length);
 
     }
 
@@ -288,7 +271,7 @@ const Scheduler = (props: any) => {
 
     // Return component
     return (
-    <div>                    
+    <div>          
         <button className = "leftButton" type = "button" onClick = {prevSchedule}>Left</button>
         <button type = "button" id = "updateCal" onClick = {permute}><i className="fas fa-sync"></i></button>
         <button className = "rightButton" type = "button" onClick = {nextSchedule}>Right</button>
