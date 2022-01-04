@@ -29,6 +29,14 @@
     font-size: 1.5em;
 }
 
+.schedule-title-holder {
+    flex: 4;
+    display: flex;
+    width: auto;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 2rem;
+}
 
 .schedulerPage {
     display: flex;

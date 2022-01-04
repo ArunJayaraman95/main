@@ -116,7 +116,8 @@ function ClassForm() {
                 <Scheduler courseListings = {courseList}></Scheduler>
                 <div className="classForm">
                     <div className = "classFormContent">
-                        <h2 className = "classFormTitle">Add Schedule</h2>
+                        <h2 className = "classFormTitle">Add Sections</h2>
+                        <a href = "/">Home Page</a>
                         <form action="">
                             <label>Class Name:</label>
                             <input 

@@ -263,12 +263,12 @@ const Scheduler = (props: any) => {
     return (
     <div className = "schedule-big"> 
         <div className="schedule-header">    
-            <h2>Schedule #{scheduleIndex + 1} of {scheduleCount}</h2>
+            <div className = "schedule-title-holder"><h2 className = "schedule-title">Schedule #{scheduleIndex + 1} of {scheduleCount}</h2></div>
             <div className="schedule-nav">
-                <button className = "leftButton" type = "button" onClick = {prevSchedule}>Prev</button>
-                <button type = "button" id = "updateCal" onClick = {permute}><i className="fas fa-sync"></i></button>
-                <button className = "rightButton" type = "button" onClick = {nextSchedule}>Next</button>
-                <button className = "testButton" type = "button" onClick = {checkFunction}>Console</button>
+                <button id = "leftButton" type = "button" onClick = {prevSchedule}>Prev</button>
+                <button type = "button" id = "generate" onClick = {permute}><i className="fas fa-sync"></i></button>
+                <button id = "rightButton" type = "button" onClick = {nextSchedule}>Next</button>
+                <button id = "testButton" type = "button" onClick = {checkFunction}>Console</button>
             </div>
         </div>
         <div className="scheduler-component">
