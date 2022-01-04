@@ -2,16 +2,17 @@ import React, { useState } from "react";
 import { Inject, ScheduleComponent, Week, EventSettingsModel, ViewsDirective, ViewDirective} from "@syncfusion/ej2-react-schedule";
 import './scheduler.css';
 import { ISchedArray } from "../interfaces/schedArray";
-import { ICourse } from "../interfaces/course";
-import { strictEqual } from "assert";
 
 const Scheduler = (props: any) => {
     
     // * Always include SunSat as 20211212 and 20211218
     // ! No spaces for recurrence strings!!!
-    
+    // TODO: Figure out how to get a constant week
+    // TODO Convert conflict from n^3 looping to an n^2 matrix for performance?
 
+    // Index for the schedules
     const [scheduleIndex, setScheduleIndex] = useState<number>(0);
+    // List of schedules
     const [finalList, setFinalList] = useState<ISchedArray[][]>([[        
         {
         Subject:"Stats",
@@ -29,7 +30,9 @@ const Scheduler = (props: any) => {
         RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
         RecurrenceException:"20211212,20211218,20211213,20211215,20211217"
         },]]);
-    const [fList, setFList] = useState<ISchedArray[]>(
+
+    // List of all possible times
+    const [timesList, setTimesList] = useState<ISchedArray[]>(
         [        
         {
         Subject:"Stats",
@@ -112,25 +115,16 @@ const Scheduler = (props: any) => {
         RecurrenceException:"20211212,20211218,20211213,20211215,20211217"
         },]
     );
-    let intermediateSchedules: ISchedArray[][] = [];
+
+
     
-    const [ck, setck] = useState<number>(0);
-    let preFinalList: ISchedArray[][] = [];
+    // Number of schedules
+    const [scheduleCount, setScheduleCount] = useState<number>(0);
+    
+    /////////////////////////////////////////////////////////
     // Data for React Scheduler
     let localData:EventSettingsModel = {dataSource: finalList[scheduleIndex]};
-
-    // TODO: Figure out how to get a constant week
-    // Morph props courses into manageable FList type courses
-    const refinedCourses = props.courseListings.map((item:any) => {
-        const container:any = {};
-        container.Subject = item.courseName;
-        container.StartTime = new Date(2021, 11, 12, item.sHour, item.sMin);
-        container.EndTime = new Date(2021, 11, 12, item.eHour, item.eMin);
-        container.RecurrenceRule = "FREQ=DAILY;INTERVAl=1;COUNT=7"
-        container.RecurrenceException = item.days;
-        console.log(container);
-        return container;
-    })
+    /////////////////////////////////////////////////////////
 
     
     // Navigates to previous schedule
@@ -142,7 +136,7 @@ const Scheduler = (props: any) => {
     
     //Navigates to next schedule
     const nextSchedule = () : void => {
-        if (scheduleIndex < ck - 1) {
+        if (scheduleIndex < scheduleCount - 1) {
             setScheduleIndex(scheduleIndex + 1);
         }
     }
@@ -152,48 +146,46 @@ const Scheduler = (props: any) => {
         return (dec >>> 0).toString(2);
     }
 
-
-    // TODO Convert to matrix for performance
-
+    // Calculate permutations and resolve conflicts
     const permute = (): void => {
-        // console.log(fList.length);
-        let fLength = fList.length;
-        // setFinalList([]);
-        preFinalList = [];
-        // console.log("Flength" + fLength);
-        // console.log("HEllo" + dec2bin(2**fLength));
-        // console.log("Test" + "7".padStart(10, '0'));
-        // * Change stopping condition to 2**fLength when done debugging
-        
 
-        for (let i = 0; i < 2**fLength; i++) {
+        // Temporary lists for filtering schedules
+        let totalSectionCount = timesList.length;
+        let intermediateSchedules: ISchedArray[][] = [];
+        let preFinalList: ISchedArray[][] = [];
+
+        // Loop over all possible combinations
+        for (let i = 0; i < 2**totalSectionCount; i++) {
+
             let tempCourses: ISchedArray[] = [];
-            var t: string = dec2bin(i).toString().padStart(fLength, '0');
-            for (let j = 0; j < fLength; j++) {
+            // Convert number to binary string and pad to length of section count
+            var t: string = dec2bin(i).toString().padStart(totalSectionCount, '0');
+
+            // For each digit push corresponding course to temp course
+            for (let j = 0; j < totalSectionCount; j++) {
                 if (t.charAt(j) == '1') {
-                    tempCourses.push(fList[j]);
-                    // console.log(tempCourses);
+                    tempCourses.push(timesList[j]);
                 }
             }
-
-            let poss: boolean = true;
+            
+            // Loop through courses & check if theres a conflict between any classes
+            let isPossibleSchedule: boolean = true;
 
             for (let k = 0; k < tempCourses.length; k++) {
                 for (let m = k; m < tempCourses.length; m++) {
                     if (conflict(tempCourses[k], tempCourses[m])) {
-                        poss = false;
+                        isPossibleSchedule = false;
                     }
                 }
             }
 
-            if (poss) {
+            // If possible, add to intermediate schedule list
+            if (isPossibleSchedule) {
                 intermediateSchedules.push(tempCourses);
-                console.log(tempCourses);
-            } else {
-                // console.log("CONFLICTED SCHEDULE NUMBER " + i);
             }
         }
 
+        // Find maximum class count for any given schedule
         let tempMax = 0;
         for (let i = 0; i < intermediateSchedules.length; i++) {
             if (intermediateSchedules[i].length > tempMax) {
@@ -201,37 +193,34 @@ const Scheduler = (props: any) => {
             }
         }
 
+        // Push optimal schedules into preFinalList variable
         for (let i = 0; i < intermediateSchedules.length; i++) {
             if (intermediateSchedules[i].length === tempMax) {
-                console.log("YUP")
-                console.log(intermediateSchedules[i]);
-                // setFinalList([...finalList, intermediateSchedules[i]])
-                // setFinalList([...finalList, ...[intermediateSchedules[1]]]);
-                // var join = finalList.concat(intermediateSchedules[i]);
-                // setFinalList(join);
                 preFinalList.push(intermediateSchedules[i]);
-                console.log("UPDATED");
-                console.log(preFinalList);
             }
         }
 
-        console.log("FINAL LIST");
-        console.log(preFinalList);
+        // Set Final List state to preFinalList variable (Don't Change)
         setFinalList(preFinalList);
-        setck(preFinalList.length);
-
+        setScheduleCount(preFinalList.length);
     }
 
+    // Returns if there's a conflict between 2 courses
     const conflict = (a: ISchedArray, b: ISchedArray): boolean => {
+
+        // If the object is itself, return no conflict
         if (a.Id === b.Id) {
             return false;
         }
+        // If 2 courses share the same name, return immediate conflict
         if (a.Subject === b.Subject) {
             return true;
         }
         
+        // Boolean to indicate same days between classes
         let conflictDays: boolean = false;
-        // ! ERROR ON DAY CHECKER FIX LOGIC
+        
+        // Check if there is a conflict of days
         if (!a.RecurrenceException.includes('20211213') && !b.RecurrenceException.includes('20211213')) {
             conflictDays = true;
         } 
@@ -248,23 +237,24 @@ const Scheduler = (props: any) => {
             conflictDays = true;
         }
 
+        // Converting start/end times to integers for easier comparison
         let aTempStart: number = a.StartTime.getHours() * 100 + a.StartTime.getMinutes();
         let aTempEnd: number = a.EndTime.getHours() * 100 + a.EndTime.getMinutes();
         let bTempStart: number = b.StartTime.getHours() * 100 + b.StartTime.getMinutes();
         let bTempEnd: number = b.EndTime.getHours() * 100 + b.EndTime.getMinutes();
 
+        // Check if there is a time conflict
         let conflictOne: boolean = (aTempStart <= bTempStart && bTempStart <= aTempEnd);
         let conflictTwo: boolean = (bTempStart <= aTempStart && aTempStart <= bTempEnd);
         let timeConflict: boolean = conflictOne || conflictTwo;
-        // console.log("Time" + timeConflict);
-        // console.log("Day" + conflictDays);
 
+        // Return true (conflict) only if there's conflict in BOTH days and times
         return conflictDays && timeConflict;
     }
 
+    // Debugging function
     const checkFunction = () : void => {
-        let checker = conflict(fList[3], fList[7]);
-        console.log(checker);
+        let checker = conflict(timesList[3], timesList[7])
     }
 
 
@@ -276,7 +266,7 @@ const Scheduler = (props: any) => {
         <button type = "button" id = "updateCal" onClick = {permute}><i className="fas fa-sync"></i></button>
         <button className = "rightButton" type = "button" onClick = {nextSchedule}>Right</button>
         <button className = "testButton" type = "button" onClick = {checkFunction}>Console</button>
-        <h2>Schedule #{scheduleIndex + 1} of {ck}</h2>
+        <h2>Schedule #{scheduleIndex + 1} of {scheduleCount}</h2>
         
         <div className="scheduler-component">
             <ScheduleComponent
