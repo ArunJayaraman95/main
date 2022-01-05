@@ -24,8 +24,16 @@
 }
 
 .input-section__inputs {
-  border-radius: 6px;
+  border: none;
+  background: none;
+  border-bottom: 1px solid black;
   margin: 0.2em;
+}
+
+.input-section__inputs:hover {
+  background: burlywood;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }
 
 .input-section__time-inputs {
@@ -42,6 +50,44 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding-top: 0.5em;
+}
+
+.input-section__class-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 0.5em;
+}
+
+.input-section__class-input input {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.input-section__check-submit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-top: 0.5em;
 }
 
 .input-section .courseList {

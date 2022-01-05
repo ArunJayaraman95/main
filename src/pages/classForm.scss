@@ -18,8 +18,15 @@
     }
 
     &__inputs {
-        border-radius: 6px;
+        border: none;
+        background: none;
+        border-bottom: 1px solid black;
+        // border-radius: 6px;
         margin: 0.2em;
+        &:hover {
+            background: burlywood;
+            transition: all 0.2s;
+        }
     }
 
     &__time-inputs {
@@ -27,10 +34,29 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        padding-top: 0.5em;
     }
 
+    &__class-input {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-top: 0.5em;
+        input {
+            flex: 1;
+        }
+    }
+    &__check-submit {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 0.5em;
+    }
 
     .courseList {
         background: orange;
     }
+
+
 }
