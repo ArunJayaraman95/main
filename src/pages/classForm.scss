@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.schedule-page {
+    display: flex;
+    flex-direction: row;
+    background: #9fbfcc;
+}
+
+.input-section {
+    background: tan;
+    width: 100%;
+
+    &__elements {
+        padding: 10px;
+    }
+
+    &__inputs {
+        border-radius: 6px;
+        margin: 0.2em;
+    }
+
+    &__time-inputs {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+
+    .courseList {
+        background: orange;
+    }
+}

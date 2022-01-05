@@ -272,14 +272,14 @@ const Scheduler = (props: any) => {
                 <button id = "" type = "button" onClick = {checkFunction}>Console</button>
             </div>
         </div>
-        
+
         <div className="">
             <ScheduleComponent
                 timeScale={{ enable: true, interval: 60, slotCount: 2 }}
                 showHeaderBar = {false}
                 showTimeIndicator = {false}
                 height = '90vh'
-                width = '60vw'
+                width = '70vw'
                 currentView = "Week"
                 selectedDate = {new Date(2021, 11, 12)}
                 eventSettings = {localData}>

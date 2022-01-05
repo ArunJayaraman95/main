@@ -112,16 +112,16 @@ function ClassForm() {
 
     // TODO: Add day options
     return (
-        <div className = "">
-                <Scheduler courseListings = {courseList}></Scheduler>
-                <div className="">
-                    <div className = "">
+        <div className = "schedule-page">
+                <Scheduler className = "scheduler" courseListings = {courseList}></Scheduler>
+                <div className="input-section">
+                    <div className = "input-section__elements">
                         <h2 className = "">Add Sections</h2>
                         <a href = "/">Home Page</a>
                         <form action="">
                             <label>Class Name:</label>
                             <input 
-                                className = "" 
+                                className = "input-section__inputs" 
                                 // type="text" 
                                 id = "cName" 
                                 name = "cName" 
@@ -130,28 +130,31 @@ function ClassForm() {
                                 required/>
                             <br/>
     
-                            <label>Start Time:</label>
-                            <input 
-                                className = "" 
-                                type="time" 
-                                id = "sTime" 
-                                name = "sTime" 
-                                value = {start} 
-                                onChange = {handleChange} 
-                                required/>
-                            <br/>
-    
-                            <label>End Time:</label>
-                            <input 
-                                className = "" 
-                                type="time" 
-                                id="eTime" 
-                                name="eTime" 
-                                value = {end} 
-                                onChange = {handleChange} 
-                                required/>
-                            <br/>
-                            <div className="">
+                            <div className = "input-section__time-inputs">
+                                <label>Start Time:</label>
+                                <input 
+                                    className = "input-section__inputs" 
+                                    type="time" 
+                                    id = "sTime" 
+                                    name = "sTime" 
+                                    value = {start} 
+                                    onChange = {handleChange} 
+                                    required/>
+                                <br/>
+        
+                                <label>End Time:</label>
+                                <input 
+                                    className = "input-section__inputs"  
+                                    type="time" 
+                                    id="eTime" 
+                                    name="eTime" 
+                                    value = {end} 
+                                    onChange = {handleChange} 
+                                    required/>
+                                <br/>
+                            </div>
+
+                            <div className="input_section__checkboxes">
                                 <input 
                                     onChange = {() => handleCheckboxes(0)} 
                                     type = "checkbox" 
@@ -190,7 +193,7 @@ function ClassForm() {
                             <button type = "button" className = "" onClick={addSection}>
                                 <i className="fas fa-plus"></i>Add Section</button>
                         </form>
-                        <div className="">
+                        <div className="courseList">
                             {courseList.map((course: ICourse, key: number) => {
                                 return <ClassTask course = {course} key = {key} removeCourse = {removeCourse} />;
                             })}
