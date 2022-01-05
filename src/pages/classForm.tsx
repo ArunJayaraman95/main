@@ -116,7 +116,7 @@ function ClassForm() {
                 <Scheduler className = "scheduler" courseListings = {courseList}></Scheduler>
                 <div className="input-section">
                     <div className = "input-section__elements">
-                        <h2 className = "">Add Sections</h2>
+                        <h2 className = "input-section__title">Add Sections</h2>
                         <a href = "/">Home Page</a>
                         <form action="">
                             <div className = "input-section__class-input">
@@ -127,6 +127,7 @@ function ClassForm() {
                                     id = "cName" 
                                     name = "cName" 
                                     value = {section} 
+                                    placeholder= "Course Name"
                                     onChange = {handleChange}
                                     required/>
                                 <br/>
@@ -194,13 +195,13 @@ function ClassForm() {
         
         
                                 <div className = "add-section-button">
-                                    <button type = "button" className = "" onClick={addSection}>
-                                        <i className="fas fa-plus"></i>Add Section</button>
+                                    <button type = "button" className = "input-section__submit-button" onClick={addSection}>Add Section</button>
                                 </div>
                             </div>
 
                         </form>
                         <div className="courseList">
+                            <div id = "courseList__title"><h3>Section List</h3></div>
                             {courseList.map((course: ICourse, key: number) => {
                                 return <ClassTask course = {course} key = {key} removeCourse = {removeCourse} />;
                             })}

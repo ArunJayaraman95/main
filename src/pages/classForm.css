@@ -19,8 +19,19 @@
   width: 100%;
 }
 
+.input-section__title {
+  font-family: "Bebas Neue", "Impact";
+  letter-spacing: 1.9vw;
+  background: red;
+  white-space: nowrap;
+}
+
 .input-section__elements {
   padding: 10px;
+}
+
+.input-section__elements label {
+  font-family: "Tahoma";
 }
 
 .input-section__inputs {
@@ -31,7 +42,7 @@
 }
 
 .input-section__inputs:hover {
-  background: burlywood;
+  background: silver;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
@@ -88,9 +99,94 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.input-section__check-submit label {
+  margin-right: 15px;
+  margin-left: 5px;
+}
+
+.input-section__submit-button {
+  border-radius: 50px;
+  border: none;
+  background: green;
+  color: white;
+  padding: 0.5em;
+  font-family: "Tahoma";
 }
 
 .input-section .courseList {
-  background: orange;
+  margin-top: 1em;
+}
+
+.input-section br {
+  border: 1px solid black;
+}
+
+.course-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+
+.course-item__info {
+  -webkit-box-flex: 4;
+      -ms-flex: 4;
+          flex: 4;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  background-color: lightsteelblue;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.course-item__info__name {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+}
+
+.course-item__info__timings {
+  font-size: 0.7em;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.course-item__info__days {
+  font-size: 0.7em;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.course-item button {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  border: none;
+  background-color: coral;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
 }
 /*# sourceMappingURL=classForm.css.map */

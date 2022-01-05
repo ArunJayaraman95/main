@@ -30,13 +30,13 @@ const ClassTask = ({ course, removeCourse }: Props) => {
     }
 
     return (
-        <div className="course">
-            <div className="content">
-                    <span className = "courseDisplay">{course.courseName}</span>
-                    <span className="timings">
+        <div className="course-item">
+            <div className="course-item__info">
+                    <span className = "course-item__info__name">{course.courseName}</span>
+                    <span className="course-item__info__timings">
                         {course.start} ~ {course.end}
                     </span>
-                    <span className = "daysOfWeekDisplay">{getDayDisplay()}</span>
+                    <span className = "course-item__info__days">{getDayDisplay()}</span>
             </div>
             <button onClick = {() => {removeCourse(course.key)}}>Remove</button>
         </div>
