@@ -112,16 +112,16 @@ function ClassForm() {
 
     // TODO: Add day options
     return (
-        <div className = "schedulerPage">
+        <div className = "">
                 <Scheduler courseListings = {courseList}></Scheduler>
-                <div className="classForm">
-                    <div className = "classFormContent">
-                        <h2 className = "classFormTitle">Add Sections</h2>
+                <div className="">
+                    <div className = "">
+                        <h2 className = "">Add Sections</h2>
                         <a href = "/">Home Page</a>
                         <form action="">
                             <label>Class Name:</label>
                             <input 
-                                className = "cFormInputs" 
+                                className = "" 
                                 // type="text" 
                                 id = "cName" 
                                 name = "cName" 
@@ -132,7 +132,7 @@ function ClassForm() {
     
                             <label>Start Time:</label>
                             <input 
-                                className = "cFormInputs" 
+                                className = "" 
                                 type="time" 
                                 id = "sTime" 
                                 name = "sTime" 
@@ -143,7 +143,7 @@ function ClassForm() {
     
                             <label>End Time:</label>
                             <input 
-                                className = "cFormInputs" 
+                                className = "" 
                                 type="time" 
                                 id="eTime" 
                                 name="eTime" 
@@ -151,7 +151,7 @@ function ClassForm() {
                                 onChange = {handleChange} 
                                 required/>
                             <br/>
-                            <div className="weekDays-selector">
+                            <div className="">
                                 <input 
                                     onChange = {() => handleCheckboxes(0)} 
                                     type = "checkbox" 
@@ -187,9 +187,10 @@ function ClassForm() {
                             </div>
     
     
-                            <button type = "button" className = "cFormInputs" onClick={addSection}><i className="fas fa-plus"></i>Add Section</button>
+                            <button type = "button" className = "" onClick={addSection}>
+                                <i className="fas fa-plus"></i>Add Section</button>
                         </form>
-                        <div className="displayClasses">
+                        <div className="">
                             {courseList.map((course: ICourse, key: number) => {
                                 return <ClassTask course = {course} key = {key} removeCourse = {removeCourse} />;
                             })}

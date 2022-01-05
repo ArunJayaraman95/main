@@ -261,17 +261,19 @@ const Scheduler = (props: any) => {
 
     // Return component
     return (
-    <div className = "schedule-big"> 
-        <div className="schedule-header">    
-            <div className = "schedule-title-holder"><h2 className = "schedule-title">Schedule #{scheduleIndex + 1} of {scheduleCount}</h2></div>
-            <div className="schedule-nav">
-                <button id = "leftButton" type = "button" onClick = {prevSchedule}>Prev</button>
-                <button type = "button" id = "generate" onClick = {permute}><i className="fas fa-sync"></i></button>
-                <button id = "rightButton" type = "button" onClick = {nextSchedule}>Next</button>
-                <button id = "testButton" type = "button" onClick = {checkFunction}>Console</button>
+    <div className = ""> 
+        <div className="">    
+            <div className = "">
+                <h2 className = "">Schedule #{scheduleIndex + 1} of {scheduleCount}</h2></div>
+            <div className="">
+                <button id = "" type = "button" onClick = {prevSchedule}>Prev</button>
+                <button id = "" type = "button" onClick = {permute}>Sync</button>
+                <button id = "" type = "button" onClick = {nextSchedule}>Next</button>
+                <button id = "" type = "button" onClick = {checkFunction}>Console</button>
             </div>
         </div>
-        <div className="scheduler-component">
+        
+        <div className="">
             <ScheduleComponent
                 timeScale={{ enable: true, interval: 60, slotCount: 2 }}
                 showHeaderBar = {false}
