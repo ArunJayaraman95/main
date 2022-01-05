@@ -200,7 +200,7 @@ const Scheduler = (props: any) => {
             }
         }
 
-        // Set Final List state to preFinalList variable (Don't Change)
+        // Set Final List 'state' to preFinalList 'variable' (Don't Change)
         setFinalList(preFinalList);
         setScheduleCount(preFinalList.length);
     }

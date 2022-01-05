@@ -1,5 +1,5 @@
-#generate {
-    background-color: #4CAF50; /* Green */
+/* #generate {
+    background-color: #4CAF50;
     border: none;
     color: white;
     padding: 1%;
@@ -42,7 +42,7 @@
 }
 
 #leftButton {
-    background-color: #668ba8; /* Green */
+    background-color: #668ba8; 
     border: none;
     color: white;
     padding: 1%;
@@ -61,7 +61,7 @@
     transition: all 0.3s;
 }
 #rightButton {
-    background-color: #668ba8; /* Green */
+    background-color: #668ba8; 
     border: none;
     color: white;
     padding: 1%;
@@ -81,4 +81,4 @@
 }
 #testButton {
     width: 80px;
-}
+} */

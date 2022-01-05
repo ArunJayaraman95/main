@@ -1,0 +1,117 @@
+/* input {
+    border-radius: 50px;
+} */
+
+
+
+
+/* \* {
+    margin: 0;
+    padding: 0;
+}
+
+.classForm {
+    background-color: burlywood;
+    width: 100%;
+    height: 100%;
+}
+
+.classFormContent {
+    padding: 2%;
+}
+
+.classFormTitle {
+    font-size: 2em;
+}
+
+.classFormContent input {
+    margin: 0.5em 0.5em;
+    font-size: 1.5em;
+}
+.classFormContent input[type=checkbox] {
+    padding: 10px;
+}
+
+.classFormContent label {
+    font-size: 1.5em;
+}
+
+.schedule-title-holder {
+    flex: 4;
+    display: flex;
+    width: auto;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 2rem;
+}
+
+.schedulerPage {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+button.cFormInputs {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50px;
+}
+
+.course {
+    background-color: gold;
+    border-radius: 100px;
+    margin: 0.2em;
+    width: 95%;
+    height: 1.3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.course .content {
+    flex: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.courseDisplay {
+    flex: 3;
+    margin-left: 10px;
+}
+
+.timings {
+    flex: 2;
+}
+
+.daysOfWeekDisplay {
+    flex: 2;
+    text-align: center;
+    font-size: 0.6em;
+}
+
+.course button {
+    flex: 20%;
+    height: 100%;
+    border: none;
+    background-color: purple;
+    color: white;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+}
+
+.debugger {
+    margin-top: 20px;
+    padding: 20px;
+} */
