@@ -2,7 +2,7 @@
     "homepage": ".",
     "name": "main",
     "version": "0.1.0",
-    "private": false,
+    "private": true,
     "dependencies": {
         "@syncfusion/ej2-react-schedule": "^19.3.55",
         "@testing-library/jest-dom": "^5.16.1",
