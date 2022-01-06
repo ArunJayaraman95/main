@@ -96,8 +96,8 @@ function ClassForm() {
 
         // Reset values, don't reset checkboxes
         setSection("");
-        setStart("12:00");
-        setEnd("12:00");
+        setStart("");
+        setEnd("");
         
     }
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Inject, ScheduleComponent, Week, EventSettingsModel, ViewsDirective, ViewDirective, setTime} from "@syncfusion/ej2-react-schedule";
 import './scheduler.css';
 import { ISchedArray } from "../interfaces/schedArray";
@@ -9,7 +9,10 @@ const Scheduler = (props: any) => {
     // ! No spaces for recurrence strings!!!
     // TODO: Figure out how to get a constant week
     // TODO Convert conflict from n^3 looping to an n^2 matrix for performance?
-
+    useEffect(() => {
+        setTimesList(refinedCourses);
+    }, [props.courseListings]);
+    
     const refinedCourses = props.courseListings.map((item:any, index: number) => {
         const container:any = {};
         container.Subject = item.courseName;
@@ -27,7 +30,23 @@ const Scheduler = (props: any) => {
     // Index for the schedules
     const [scheduleIndex, setScheduleIndex] = useState<number>(0);
     // List of schedules
-    const [finalList, setFinalList] = useState<ISchedArray[][]>([]);
+    const [finalList, setFinalList] = useState<ISchedArray[][]>([[        
+        {
+        Subject:"Stats",
+        Id:"2",
+        StartTime: new Date(2021, 11, 12, 12, 0),
+        EndTime: new Date(2021, 11, 12, 12, 1),
+        RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
+        RecurrenceException:"20211212,20211218,20211214,20211216"    
+        },
+        {
+        Subject:"Algorithms",
+        Id:"3",
+        StartTime: new Date(2021, 11, 12, 17, 30),
+        EndTime: new Date(2021, 11, 12, 18, 45),
+        RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
+        RecurrenceException:"20211212,20211218,20211213,20211215,20211217"
+        },]]);
 
     // List of all possible times
     const [timesList, setTimesList] = useState<ISchedArray[]>([]);
@@ -72,10 +91,9 @@ const Scheduler = (props: any) => {
         // console.log("Section count" + totalSectionCount);
         // Loop over all possible combinations
         for (let i = 0; i < 2**totalSectionCount; i++) {
-            console.log(i);
             let tempCourses: ISchedArray[] = [];
             // Convert number to binary string and pad to length of section count
-            var t: string = dec2bin(i).toString().padStart(totalSectionCount, '0');
+            let t: string = dec2bin(i).toString().padStart(totalSectionCount, '0');
 
             // For each digit push corresponding course to temp course
             for (let j = 0; j < totalSectionCount; j++) {
@@ -91,7 +109,6 @@ const Scheduler = (props: any) => {
                 for (let m = k; m < tempCourses.length; m++) {
                     if (conflict(tempCourses[k], tempCourses[m])) {
                         isPossibleSchedule = false;
-                        console.log("False at " + i);
                     }
                 }
             }
@@ -126,12 +143,12 @@ const Scheduler = (props: any) => {
     const conflict = (a: ISchedArray, b: ISchedArray): boolean => {
         // If the object is itself, return no conflict
         if (a.Id === b.Id) {
-            console.log("SAME ID");
+            // console.log("SAME ID");
             return false;
         }
         // If 2 courses share the same name, return immediate conflict
         if (a.Subject === b.Subject) {
-            console.log("SAME SUBJECT");
+            // console.log("SAME SUBJECT");
             return true;
         }
         
@@ -162,8 +179,8 @@ const Scheduler = (props: any) => {
         let bTempEnd: number = b.EndTime.getHours() * 100 + b.EndTime.getMinutes();
 
         // Check if there is a time conflict
-        let conflictOne: boolean = (aTempStart <= bTempStart && bTempStart <= aTempEnd);
-        let conflictTwo: boolean = (bTempStart <= aTempStart && aTempStart <= bTempEnd);
+        let conflictOne: boolean = (aTempStart <= bTempStart && bTempStart < aTempEnd);
+        let conflictTwo: boolean = (bTempStart <= aTempStart && aTempStart < bTempEnd);
         let timeConflict: boolean = conflictOne || conflictTwo;
         
         // Return true (conflict) only if there's conflict in BOTH days and times
@@ -172,13 +189,12 @@ const Scheduler = (props: any) => {
 
     // Sets updated times lists, permutes, sets calendar
     const syncClasses = () : void => {
-        setTimesList(refinedCourses);
         permute();
         setScheduleIndex(0);
     }
     // Debugging function
     const checkFunction = () : void => {
-        console.log(timesList);
+        console.log(finalList);
     }
 
 
