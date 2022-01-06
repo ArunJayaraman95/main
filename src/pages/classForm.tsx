@@ -112,84 +112,109 @@ function ClassForm() {
 
     // TODO: Add day options
     return (
-        <div className = "schedulerPage">
-                <Scheduler courseListings = {courseList}></Scheduler>
-                <div className="classForm">
-                    <div className = "classFormContent">
-                        <h2 className = "classFormTitle">Add Sections</h2>
+        <div className = "schedule-page">
+                <Scheduler className = "scheduler" courseListings = {courseList}></Scheduler>
+                <div className="input-section">
+                    <div className = "input-section__elements">
+                        <div className = "input-section__title">
+                            <span>A</span>
+                            <span>D</span>
+                            <span>D</span>
+                            <span>&nbsp;</span>
+                            <span>S</span>
+                            <span>E</span>
+                            <span>C</span>
+                            <span>T</span>
+                            <span>I</span>
+                            <span>O</span>
+                            <span>N</span>
+                            <span>S</span>
+                        </div>
                         <a href = "/">Home Page</a>
                         <form action="">
-                            <label>Class Name:</label>
-                            <input 
-                                className = "cFormInputs" 
-                                // type="text" 
-                                id = "cName" 
-                                name = "cName" 
-                                value = {section} 
-                                onChange = {handleChange}
-                                required/>
-                            <br/>
-    
-                            <label>Start Time:</label>
-                            <input 
-                                className = "cFormInputs" 
-                                type="time" 
-                                id = "sTime" 
-                                name = "sTime" 
-                                value = {start} 
-                                onChange = {handleChange} 
-                                required/>
-                            <br/>
-    
-                            <label>End Time:</label>
-                            <input 
-                                className = "cFormInputs" 
-                                type="time" 
-                                id="eTime" 
-                                name="eTime" 
-                                value = {end} 
-                                onChange = {handleChange} 
-                                required/>
-                            <br/>
-                            <div className="weekDays-selector">
+                            <div className = "input-section__class-input">
+                                <label>Class Name:</label>
                                 <input 
-                                    onChange = {() => handleCheckboxes(0)} 
-                                    type = "checkbox" 
-                                    name = "daysOfWeek" 
-                                    value = "Mon"
-                                /><label>M</label>
-                                <input 
-                                    onChange = {() => handleCheckboxes(1)} 
-                                    type = "checkbox" 
-                                    name = "daysOfWeek" 
-                                    value = "Tue"
-                                /><label>T</label>
-                                <input 
-                                    onChange = {() => handleCheckboxes(2)} 
-                                    type = "checkbox" 
-                                    name = "daysOfWeek" 
-                                    value = "Wed"
-                                /><label>W</label>
-                                <input 
-                                    onChange = {() => handleCheckboxes(3)} 
-                                    type = "checkbox" 
-                                    name = "daysOfWeek" 
-                                    value = "Thu"
-                                /><label>T</label>
-                                <input 
-                                    onChange = {() => handleCheckboxes(4)} 
-                                    type = "checkbox" 
-                                    name = "daysOfWeek" 
-                                    value = "Fri"
-                                /><label>F</label>
-    
-    
+                                    className = "input-section__inputs" 
+                                    // type="text" 
+                                    id = "cName" 
+                                    name = "cName" 
+                                    value = {section} 
+                                    placeholder= "Course Name"
+                                    onChange = {handleChange}
+                                    required/>
+                                <br/>
                             </div>
     
-    
-                            <button type = "button" className = "cFormInputs" onClick={addSection}><i className="fas fa-plus"></i>Add Section</button>
+                            <div className = "input-section__time-inputs">
+                                <label>Start Time:</label>
+                                <input 
+                                    className = "input-section__inputs" 
+                                    type="time" 
+                                    id = "sTime" 
+                                    name = "sTime" 
+                                    value = {start} 
+                                    onChange = {handleChange} 
+                                    required/>
+                                <br/>
+        
+                                <label>End Time:</label>
+                                <input 
+                                    className = "input-section__inputs"  
+                                    type="time" 
+                                    id="eTime" 
+                                    name="eTime" 
+                                    value = {end} 
+                                    onChange = {handleChange} 
+                                    required/>
+                                <br/>
+                            </div>
+
+                            <div className = "input-section__check-submit">
+                                <div className="input_section__checkboxes">
+                                    <input 
+                                        onChange = {() => handleCheckboxes(0)} 
+                                        type = "checkbox" 
+                                        name = "daysOfWeek" 
+                                        value = "Mon"
+                                    /><label>M</label>
+                                    <input 
+                                        onChange = {() => handleCheckboxes(1)} 
+                                        type = "checkbox" 
+                                        name = "daysOfWeek" 
+                                        value = "Tue"
+                                    /><label>T</label>
+                                    <input 
+                                        onChange = {() => handleCheckboxes(2)} 
+                                        type = "checkbox" 
+                                        name = "daysOfWeek" 
+                                        value = "Wed"
+                                    /><label>W</label>
+                                    <input 
+                                        onChange = {() => handleCheckboxes(3)} 
+                                        type = "checkbox" 
+                                        name = "daysOfWeek" 
+                                        value = "Thu"
+                                    /><label>T</label>
+                                    <input 
+                                        onChange = {() => handleCheckboxes(4)} 
+                                        type = "checkbox" 
+                                        name = "daysOfWeek" 
+                                        value = "Fri"
+                                    /><label>F</label>
+        
+        
+                                </div>
+        
+        
+                                <div className = "add-section-button">
+                                    <button type = "button" className = "input-section__submit-button" onClick={addSection}>Add Section</button>
+                                </div>
+                            </div>
+
                         </form>
-                        <div className="displayClasses">
+                        <div className="courseList">
+                            <div id = "courseList__title"><h3>Section List</h3></div>
                             {courseList.map((course: ICourse, key: number) => {
                                 return <ClassTask course = {course} key = {key} removeCourse = {removeCourse} />;
                             })}

@@ -200,7 +200,7 @@ const Scheduler = (props: any) => {
             }
         }
 
-        // Set Final List state to preFinalList variable (Don't Change)
+        // Set Final List 'state' to preFinalList 'variable' (Don't Change)
         setFinalList(preFinalList);
         setScheduleCount(preFinalList.length);
     }
@@ -261,23 +261,25 @@ const Scheduler = (props: any) => {
 
     // Return component
     return (
-    <div className = "schedule-big"> 
-        <div className="schedule-header">    
-            <div className = "schedule-title-holder"><h2 className = "schedule-title">Schedule #{scheduleIndex + 1} of {scheduleCount}</h2></div>
-            <div className="schedule-nav">
-                <button id = "leftButton" type = "button" onClick = {prevSchedule}>Prev</button>
-                <button type = "button" id = "generate" onClick = {permute}><i className="fas fa-sync"></i></button>
-                <button id = "rightButton" type = "button" onClick = {nextSchedule}>Next</button>
-                <button id = "testButton" type = "button" onClick = {checkFunction}>Console</button>
+    <div className = "scheduler-block"> 
+        <div className="scheduler-block__desc">    
+            <div className = "scheduler-block__desc__title">
+                <h2 className = "">Schedule #{scheduleIndex + 1} of {scheduleCount}</h2></div>
+            <div className="scheduler-block__desc__buttons">
+                <button id = "prev-button" type = "button" onClick = {prevSchedule}>Prev</button>
+                <button id = "generate" type = "button" onClick = {permute}>Sync</button>
+                <button id = "next-button" type = "button" onClick = {nextSchedule}>Next</button>
+                {/* <button id = "console-button" type = "button" onClick = {checkFunction}>Console</button> */}
             </div>
         </div>
-        <div className="scheduler-component">
+
+        <div className="scheduler-block__component">
             <ScheduleComponent
                 timeScale={{ enable: true, interval: 60, slotCount: 2 }}
                 showHeaderBar = {false}
                 showTimeIndicator = {false}
                 height = '90vh'
-                width = '60vw'
+                width = '70vw'
                 currentView = "Week"
                 selectedDate = {new Date(2021, 11, 12)}
                 eventSettings = {localData}>

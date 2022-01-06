@@ -1,0 +1,58 @@
+.scheduler-block {
+    &__desc {
+        display: flex;
+        flex-direction: row;
+        // justify-content: space-between;
+        align-items: center;
+        height: 10vh;
+        padding: 0 2em 0 2em;
+
+        &__title {
+            font-family: "Bebas Neue";
+            font-size: 2em;
+            flex: 4;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            // background: green;
+            h2 {
+                letter-spacing: 0.2em;
+            }
+        }
+
+        &__buttons {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            // background: red;
+            height: 100%;
+            align-items: center;
+
+            
+            #prev-button, #next-button {
+                background: rgb(88, 169, 82);
+
+                &:hover {
+                    background: rgb(52, 127, 44);
+                }
+            }
+
+            #generate {
+                background: rgb(98, 225, 216);
+                
+                &:hover {
+                    background: rgb(41, 163, 191);
+                }
+            }
+
+            button {
+                border-radius: 100px;
+                border: none;
+                padding: 1em;
+                height: 3.5rem;
+            }
+        }
+    }
+}

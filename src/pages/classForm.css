@@ -1,111 +1,205 @@
 * {
-    margin: 0;
-    padding: 0;
-    font-family: 'Helvetica';
+  margin: 0;
+  padding: 0;
 }
 
-.classForm {
-    background-color: burlywood;
-    width: 100%;
-    height: 100%;
+.schedule-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  background: #9fbfcc;
 }
 
-.classFormContent {
-    padding: 2%;
+.input-section {
+  background: tan;
+  width: 100%;
 }
 
-.classFormTitle {
-    font-size: 2em;
+.input-section__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-family: "Bebas Neue", "Tahoma";
+  font-size: 2em;
+  border-bottom: 0.2em solid black;
+  margin-bottom: 0.5em;
 }
 
-.classFormContent input {
-    margin: 0.5em 0.5em;
-    font-size: 1.5em;
-}
-.classFormContent input[type=checkbox] {
-    padding: 10px;
+.input-section__elements {
+  padding: 0 1em 1em 1em;
 }
 
-.classFormContent label {
-    font-size: 1.5em;
+.input-section__elements label {
+  font-family: "Tahoma";
 }
 
-.schedule-title-holder {
-    flex: 4;
-    display: flex;
-    width: auto;
-    align-items: center;
-    justify-content: space-around;
-    font-size: 2rem;
+.input-section__inputs {
+  border: none;
+  background: none;
+  border-bottom: 1px solid black;
+  margin: 0.2em;
 }
 
-.schedulerPage {
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
+.input-section__inputs:hover {
+  background: silver;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }
 
-button.cFormInputs {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 1%;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 50px;
+.input-section__time-inputs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 0.5em;
 }
 
-.course {
-    background-color: gold;
-    border-radius: 100px;
-    margin: 0.2em;
-    width: 95%;
-    height: 1.3rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.input-section__class-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 0.5em;
 }
 
-.course .content {
-    flex: 80%;
-    height: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+.input-section__class-input input {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
-.courseDisplay {
-    flex: 3;
-    margin-left: 10px;
+.input-section__check-submit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
 }
 
-.timings {
-    flex: 2;
+.input-section__check-submit label {
+  margin-right: 15px;
+  margin-left: 5px;
 }
 
-.daysOfWeekDisplay {
-    flex: 2;
-    text-align: center;
-    font-size: 0.6em;
+.input-section__submit-button {
+  border-radius: 50px;
+  border: none;
+  background: green;
+  color: white;
+  padding: 0.5em;
+  font-family: "Tahoma";
 }
 
-.course button {
-    flex: 20%;
-    height: 100%;
-    border: none;
-    background-color: purple;
-    color: white;
-    border-top-right-radius: 100px;
-    border-bottom-right-radius: 100px;
+.input-section .courseList {
+  margin-top: 1em;
 }
 
-.debugger {
-    margin-top: 20px;
-    padding: 20px;
+.input-section br {
+  border: 1px solid black;
 }
+
+.course-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+
+.course-item__info {
+  -webkit-box-flex: 4;
+      -ms-flex: 4;
+          flex: 4;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  background-color: lightsteelblue;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.course-item__info__name {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+}
+
+.course-item__info__timings {
+  font-size: 0.7em;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.course-item__info__days {
+  font-size: 0.7em;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.course-item button {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  border: none;
+  background-color: coral;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+/*# sourceMappingURL=classForm.css.map */

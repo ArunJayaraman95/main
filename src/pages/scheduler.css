@@ -1,84 +1,81 @@
-#generate {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 1%;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 50px;
-    width: 50px;
-    height: 50px;
-}
-#generate:hover {
-    background-color: rgb(24, 146, 71);
-    transition: all 0.3s;
-}
-.e-schedule .e-vertical-view .e-work-cells {
-    background-color: #EEF;
+.scheduler-block__desc {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 10vh;
+  padding: 0 2em 0 2em;
 }
 
-.schedule-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height: 10vh;
-    background-color: lightblue;
+.scheduler-block__desc__title {
+  font-family: "Bebas Neue";
+  font-size: 2em;
+  -webkit-box-flex: 4;
+      -ms-flex: 4;
+          flex: 4;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.schedule-nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+.scheduler-block__desc__title h2 {
+  letter-spacing: 0.2em;
 }
 
-.schedule-nav button {
-    padding: 10px;
-    margin: 10px;
+.scheduler-block__desc__buttons {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-#leftButton {
-    background-color: #668ba8; /* Green */
-    border: none;
-    color: white;
-    padding: 1%;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 50px;
-    width: 50px;
-    height: 50px;
+.scheduler-block__desc__buttons #prev-button, .scheduler-block__desc__buttons #next-button {
+  background: #58a952;
 }
-#leftButton:hover {
-    background-color: rgb(59, 88, 88);
-    transition: all 0.3s;
+
+.scheduler-block__desc__buttons #prev-button:hover, .scheduler-block__desc__buttons #next-button:hover {
+  background: #347f2c;
 }
-#rightButton {
-    background-color: #668ba8; /* Green */
-    border: none;
-    color: white;
-    padding: 1%;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 50px;
-    width: 50px;
-    height: 50px;
+
+.scheduler-block__desc__buttons #generate {
+  background: #62e1d8;
 }
-#rightButton:hover {
-    background-color: rgb(59, 88, 88);
-    transition: all 0.3s;
+
+.scheduler-block__desc__buttons #generate:hover {
+  background: #29a3bf;
 }
-#testButton {
-    width: 80px;
+
+.scheduler-block__desc__buttons button {
+  border-radius: 100px;
+  border: none;
+  padding: 1em;
+  height: 3.5rem;
 }
+/*# sourceMappingURL=scheduler.css.map */
