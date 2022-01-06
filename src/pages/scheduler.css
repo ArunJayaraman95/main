@@ -62,6 +62,7 @@
 
 .scheduler-block__desc__buttons #prev-button:hover, .scheduler-block__desc__buttons #next-button:hover {
   background: #347f2c;
+  cursor: pointer;
 }
 
 .scheduler-block__desc__buttons #generate {
@@ -69,7 +70,8 @@
 }
 
 .scheduler-block__desc__buttons #generate:hover {
-  background: #29a3bf;
+  background: #005467;
+  cursor: pointer;
 }
 
 .scheduler-block__desc__buttons button {

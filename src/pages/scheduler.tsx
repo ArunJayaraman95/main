@@ -264,7 +264,7 @@ const Scheduler = (props: any) => {
     <div className = "scheduler-block"> 
         <div className="scheduler-block__desc">    
             <div className = "scheduler-block__desc__title">
-                <h2 className = "">Schedule #{scheduleIndex + 1} of {scheduleCount}</h2></div>
+                <h2 className = "">Schedule <em>#{scheduleIndex + 1}</em> of {scheduleCount}</h2></div>
             <div className="scheduler-block__desc__buttons">
                 <button id = "prev-button" type = "button" onClick = {prevSchedule}>Prev</button>
                 <button id = "generate" type = "button" onClick = {permute}>Sync</button>
