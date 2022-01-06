@@ -34,7 +34,6 @@
 
                 &:hover {
                     background: rgb(52, 127, 44);
-                    cursor: pointer;
                 }
             }
 
@@ -43,7 +42,6 @@
                 
                 &:hover {
                     background: rgb(0, 84, 103);
-                    cursor: pointer;
                 }
             }
 
@@ -52,6 +50,7 @@
                 border: none;
                 padding: 1em;
                 height: 3.5rem;
+                cursor: pointer;
             }
         }
     }

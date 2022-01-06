@@ -62,7 +62,6 @@
 
 .scheduler-block__desc__buttons #prev-button:hover, .scheduler-block__desc__buttons #next-button:hover {
   background: #347f2c;
-  cursor: pointer;
 }
 
 .scheduler-block__desc__buttons #generate {
@@ -71,7 +70,6 @@
 
 .scheduler-block__desc__buttons #generate:hover {
   background: #005467;
-  cursor: pointer;
 }
 
 .scheduler-block__desc__buttons button {
@@ -79,5 +77,6 @@
   border: none;
   padding: 1em;
   height: 3.5rem;
+  cursor: pointer;
 }
 /*# sourceMappingURL=scheduler.css.map */
