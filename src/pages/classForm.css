@@ -20,14 +20,14 @@
 }
 
 .input-section__title {
-  font-family: "Bebas Neue", "Impact";
-  letter-spacing: 1.9vw;
-  background: red;
-  white-space: nowrap;
+  font-family: "Bebas Neue", "Tahoma";
+  font-size: 2em;
+  border-bottom: 0.2em solid black;
+  margin-bottom: 0.4em;
 }
 
 .input-section__elements {
-  padding: 10px;
+  padding: 0 1em 1em 1em;
 }
 
 .input-section__elements label {

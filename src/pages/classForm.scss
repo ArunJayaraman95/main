@@ -17,14 +17,18 @@ $b-radius-light: 2px;
     width: 100%;
 
     &__title {
-        font-family: "Bebas Neue", "Impact";
-        letter-spacing: 1.9vw;
-        background: red;
-        white-space: nowrap;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        font-family: "Bebas Neue", "Tahoma";
+        font-size: 2em;
+        border-bottom: 0.2em solid blue;
+        margin-bottom: 0.5em;
     }
 
     &__elements {
-        padding: 10px;
+        padding: 0 1em 1em 1em;
 
         label {
             font-family: "Tahoma";

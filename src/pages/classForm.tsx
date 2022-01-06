@@ -116,7 +116,20 @@ function ClassForm() {
                 <Scheduler className = "scheduler" courseListings = {courseList}></Scheduler>
                 <div className="input-section">
                     <div className = "input-section__elements">
-                        <h2 className = "input-section__title">Add Sections</h2>
+                        <div className = "input-section__title">
+                            <span>A</span>
+                            <span>D</span>
+                            <span>D</span>
+                            <span>&nbsp;</span>
+                            <span>S</span>
+                            <span>E</span>
+                            <span>C</span>
+                            <span>T</span>
+                            <span>I</span>
+                            <span>O</span>
+                            <span>N</span>
+                            <span>S</span>
+                        </div>
                         <a href = "/">Home Page</a>
                         <form action="">
                             <div className = "input-section__class-input">

@@ -1,0 +1,26 @@
+.scheduler-block {
+    &__desc {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 10vh;
+        padding: 0 2em 0 2em;
+
+        &__title {
+            font-family: "Bebas Neue";
+        }
+
+        &__buttons {
+            
+            button {
+                border-radius: 50px;
+                border: 1px solid black;
+            }
+            #prev-button, #next-button {
+                background-color: rgb(92, 182, 87);
+            }
+
+        }
+    }
+}
