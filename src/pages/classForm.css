@@ -137,6 +137,10 @@
   border: 1px solid black;
 }
 
+.input-section button:hover {
+  background: #25ac18;
+}
+
 .course-item {
   display: -webkit-box;
   display: -ms-flexbox;
