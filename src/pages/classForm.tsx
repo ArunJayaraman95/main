@@ -96,8 +96,8 @@ function ClassForm() {
 
         // Reset values, don't reset checkboxes
         setSection("");
-        setStart("12:00");
-        setEnd("12:00");
+        setStart("");
+        setEnd("");
         
     }
 
@@ -130,7 +130,7 @@ function ClassForm() {
                             <span>N</span>
                             <span>S</span>
                         </div>
-                        <a href = "/">Home Page</a>
+                        <a href = "/main">Home Page</a>
                         <form action="">
                             <div className = "input-section__class-input">
                                 <label>Class Name:</label>

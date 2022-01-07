@@ -94,6 +94,12 @@ $b-radius-light: 2px;
     br {
         border: 1px solid black;
     }
+
+    button {
+        &:hover {
+            background: rgb(37, 172, 24);
+        }
+    }
 }
 
 .course-item {

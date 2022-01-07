@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Inject, ScheduleComponent, Week, EventSettingsModel, ViewsDirective, ViewDirective} from "@syncfusion/ej2-react-schedule";
+import React, { useState, useEffect } from "react";
+import { Inject, ScheduleComponent, Week, EventSettingsModel, ViewsDirective, ViewDirective, setTime} from "@syncfusion/ej2-react-schedule";
 import './scheduler.css';
 import { ISchedArray } from "../interfaces/schedArray";
 
@@ -9,16 +9,33 @@ const Scheduler = (props: any) => {
     // ! No spaces for recurrence strings!!!
     // TODO: Figure out how to get a constant week
     // TODO Convert conflict from n^3 looping to an n^2 matrix for performance?
+    useEffect(() => {
+        setTimesList(refinedCourses);
+    }, [props.courseListings]);
+
+    const refinedCourses = props.courseListings.map((item:any, index: number) => {
+        const container:any = {};
+        container.Subject = item.courseName;
+        container.Id = index;
+        container.StartTime = new Date(2021, 11, 12, item.sHour, item.sMin);
+        container.EndTime = new Date(2021, 11, 12, item.eHour, item.eMin);
+        container.RecurrenceRule = "FREQ=DAILY;INTERVAl=1;COUNT=7"
+        container.RecurrenceException = item.days;
+        console.log(container);
+        return container;
+    })
+
+
 
     // Index for the schedules
-    const [scheduleIndex, setScheduleIndex] = useState<number>(0);
+    const [scheduleIndex, setScheduleIndex] = useState<number>(-1);
     // List of schedules
     const [finalList, setFinalList] = useState<ISchedArray[][]>([[        
         {
         Subject:"Stats",
         Id:"2",
-        StartTime: new Date(2021, 11, 12, 9, 30),
-        EndTime: new Date(2021, 11, 12, 10, 20),
+        StartTime: new Date(2021, 11, 12, 12, 0),
+        EndTime: new Date(2021, 11, 12, 12, 1),
         RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
         RecurrenceException:"20211212,20211218,20211214,20211216"    
         },
@@ -32,89 +49,7 @@ const Scheduler = (props: any) => {
         },]]);
 
     // List of all possible times
-    const [timesList, setTimesList] = useState<ISchedArray[]>(
-        [        
-        {
-        Subject:"Stats",
-        Id:"0",
-        StartTime: new Date(2021, 11, 12, 10, 30),
-        EndTime: new Date(2021, 11, 12, 11, 20),
-        RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
-        RecurrenceException:"20211212,20211218,20211214,20211216"    
-        },
-        {
-        Subject:"Stats",
-        Id:"1",
-        StartTime: new Date(2021, 11, 12, 10, 50),
-        EndTime: new Date(2021, 11, 12, 11, 20),
-        RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
-        RecurrenceException:"20211212,20211218,20211214,20211216"    
-        },
-        {
-        Subject:"Stats",
-        Id:"2",
-        StartTime: new Date(2021, 11, 12, 9, 30),
-        EndTime: new Date(2021, 11, 12, 10, 20),
-        RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
-        RecurrenceException:"20211212,20211218,20211214,20211216"    
-        },
-        {
-        Subject:"Algorithms",
-        Id:"3",
-        StartTime: new Date(2021, 11, 12, 17, 30),
-        EndTime: new Date(2021, 11, 12, 18, 45),
-        RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
-        RecurrenceException:"20211212,20211218,20211213,20211215,20211217"
-        },
-        {
-        Subject:"Game Design",
-        Id:"4",
-        StartTime: new Date(2021, 11, 12, 17, 30),
-        EndTime: new Date(2021, 11, 12, 18, 45),
-        RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
-        RecurrenceException:"20211212,20211218,20211214,20211216,20211217"
-        },
-        {
-        Subject:"Numerical",
-        Id:"5",
-        StartTime: new Date(2021, 11, 12, 16, 0),
-        EndTime: new Date(2021, 11, 12, 17, 15),
-        RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
-        RecurrenceException:"20211212,20211218,20211213,20211215,20211217"
-        },
-        {
-        Subject:"Game Lab",
-        Id:"6",
-        StartTime: new Date(2021, 11, 12, 19, 0),
-        EndTime: new Date(2021, 11, 12, 20, 40),
-        RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
-        RecurrenceException:"20211212,20211218,20211214,20211216,20211217"
-        },
-        {
-        Subject:"AI",
-        Id:"7",
-        StartTime: new Date(2021, 11, 12, 16, 0),
-        EndTime: new Date(2021, 11, 12, 17, 15),
-        RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
-        RecurrenceException:"20211212,20211218,20211214,20211216,20211217"
-        },
-        {
-        Subject:"Automata",
-        Id:"8",
-        StartTime: new Date(2021, 11, 12, 16, 30),
-        EndTime: new Date(2021, 11, 12, 17, 20),
-        RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
-        RecurrenceException:"20211212,20211218,20211214,20211216,20211217"
-        },
-        {
-        Subject:"Fake",
-        Id:"9",
-        StartTime: new Date(2021, 11, 12, 17, 15),
-        EndTime: new Date(2021, 11, 12, 17, 45),
-        RecurrenceRule: "FREQ=DAILY;INTERVAL=1;COUNT=7",
-        RecurrenceException:"20211212,20211218,20211213,20211215,20211217"
-        },]
-    );
+    const [timesList, setTimesList] = useState<ISchedArray[]>([]);
 
 
     
@@ -126,11 +61,12 @@ const Scheduler = (props: any) => {
     let localData:EventSettingsModel = {dataSource: finalList[scheduleIndex]};
     /////////////////////////////////////////////////////////
 
-    
     // Navigates to previous schedule
     const prevSchedule = () : void => {
         if (scheduleIndex > 0) {
             setScheduleIndex(scheduleIndex - 1);
+        } else {
+            setScheduleIndex(scheduleCount - 1);
         }
     }
     
@@ -138,6 +74,8 @@ const Scheduler = (props: any) => {
     const nextSchedule = () : void => {
         if (scheduleIndex < scheduleCount - 1) {
             setScheduleIndex(scheduleIndex + 1);
+        } else {
+            setScheduleIndex(0);
         }
     }
 
@@ -153,17 +91,16 @@ const Scheduler = (props: any) => {
         let totalSectionCount = timesList.length;
         let intermediateSchedules: ISchedArray[][] = [];
         let preFinalList: ISchedArray[][] = [];
-
+        // console.log("Section count" + totalSectionCount);
         // Loop over all possible combinations
         for (let i = 0; i < 2**totalSectionCount; i++) {
-
             let tempCourses: ISchedArray[] = [];
             // Convert number to binary string and pad to length of section count
-            var t: string = dec2bin(i).toString().padStart(totalSectionCount, '0');
+            let t: string = dec2bin(i).toString().padStart(totalSectionCount, '0');
 
             // For each digit push corresponding course to temp course
             for (let j = 0; j < totalSectionCount; j++) {
-                if (t.charAt(j) == '1') {
+                if (t.charAt(j) === '1') {
                     tempCourses.push(timesList[j]);
                 }
             }
@@ -207,13 +144,14 @@ const Scheduler = (props: any) => {
 
     // Returns if there's a conflict between 2 courses
     const conflict = (a: ISchedArray, b: ISchedArray): boolean => {
-
         // If the object is itself, return no conflict
         if (a.Id === b.Id) {
+            // console.log("SAME ID");
             return false;
         }
         // If 2 courses share the same name, return immediate conflict
         if (a.Subject === b.Subject) {
+            // console.log("SAME SUBJECT");
             return true;
         }
         
@@ -244,17 +182,22 @@ const Scheduler = (props: any) => {
         let bTempEnd: number = b.EndTime.getHours() * 100 + b.EndTime.getMinutes();
 
         // Check if there is a time conflict
-        let conflictOne: boolean = (aTempStart <= bTempStart && bTempStart <= aTempEnd);
-        let conflictTwo: boolean = (bTempStart <= aTempStart && aTempStart <= bTempEnd);
+        let conflictOne: boolean = (aTempStart <= bTempStart && bTempStart < aTempEnd);
+        let conflictTwo: boolean = (bTempStart <= aTempStart && aTempStart < bTempEnd);
         let timeConflict: boolean = conflictOne || conflictTwo;
-
+        
         // Return true (conflict) only if there's conflict in BOTH days and times
         return conflictDays && timeConflict;
     }
 
+    // Sets updated times lists, permutes, sets calendar
+    const syncClasses = () : void => {
+        permute();
+        setScheduleIndex(0);
+    }
     // Debugging function
     const checkFunction = () : void => {
-        let checker = conflict(timesList[3], timesList[7])
+        console.log(finalList);
     }
 
 
@@ -267,7 +210,7 @@ const Scheduler = (props: any) => {
                 <h2 className = "">Schedule <em>#{scheduleIndex + 1}</em> of {scheduleCount}</h2></div>
             <div className="scheduler-block__desc__buttons">
                 <button id = "prev-button" type = "button" onClick = {prevSchedule}>Prev</button>
-                <button id = "generate" type = "button" onClick = {permute}>Sync</button>
+                <button id = "generate" type = "button" onClick = {syncClasses}>Sync</button>
                 <button id = "next-button" type = "button" onClick = {nextSchedule}>Next</button>
                 {/* <button id = "console-button" type = "button" onClick = {checkFunction}>Console</button> */}
             </div>
