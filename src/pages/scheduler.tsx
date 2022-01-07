@@ -12,7 +12,7 @@ const Scheduler = (props: any) => {
     useEffect(() => {
         setTimesList(refinedCourses);
     }, [props.courseListings]);
-    
+
     const refinedCourses = props.courseListings.map((item:any, index: number) => {
         const container:any = {};
         container.Subject = item.courseName;
@@ -28,7 +28,7 @@ const Scheduler = (props: any) => {
 
 
     // Index for the schedules
-    const [scheduleIndex, setScheduleIndex] = useState<number>(0);
+    const [scheduleIndex, setScheduleIndex] = useState<number>(-1);
     // List of schedules
     const [finalList, setFinalList] = useState<ISchedArray[][]>([[        
         {
@@ -61,11 +61,12 @@ const Scheduler = (props: any) => {
     let localData:EventSettingsModel = {dataSource: finalList[scheduleIndex]};
     /////////////////////////////////////////////////////////
 
-    // TODO Add wrap-around instead of doing nothing
     // Navigates to previous schedule
     const prevSchedule = () : void => {
         if (scheduleIndex > 0) {
             setScheduleIndex(scheduleIndex - 1);
+        } else {
+            setScheduleIndex(scheduleCount - 1);
         }
     }
     
@@ -73,6 +74,8 @@ const Scheduler = (props: any) => {
     const nextSchedule = () : void => {
         if (scheduleIndex < scheduleCount - 1) {
             setScheduleIndex(scheduleIndex + 1);
+        } else {
+            setScheduleIndex(0);
         }
     }
 
@@ -97,7 +100,7 @@ const Scheduler = (props: any) => {
 
             // For each digit push corresponding course to temp course
             for (let j = 0; j < totalSectionCount; j++) {
-                if (t.charAt(j) == '1') {
+                if (t.charAt(j) === '1') {
                     tempCourses.push(timesList[j]);
                 }
             }
@@ -209,7 +212,7 @@ const Scheduler = (props: any) => {
                 <button id = "prev-button" type = "button" onClick = {prevSchedule}>Prev</button>
                 <button id = "generate" type = "button" onClick = {syncClasses}>Sync</button>
                 <button id = "next-button" type = "button" onClick = {nextSchedule}>Next</button>
-                <button id = "console-button" type = "button" onClick = {checkFunction}>Console</button>
+                {/* <button id = "console-button" type = "button" onClick = {checkFunction}>Console</button> */}
             </div>
         </div>
 
