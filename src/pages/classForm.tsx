@@ -130,7 +130,7 @@ function ClassForm() {
                             <span>N</span>
                             <span>S</span>
                         </div>
-                        <a href = "/main">Home Page</a>
+                        <a href = "/">Home Page</a>
                         <form action="">
                             <div className = "input-section__class-input">
                                 <label>Class Name:</label>
